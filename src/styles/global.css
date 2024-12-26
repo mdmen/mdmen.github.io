@@ -1,0 +1,36 @@
+@font-face {
+  font-family: InterVariable;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  /* https://rsms.me/inter/ */
+  src: url("/fonts/InterVariable.woff2") format("woff2");
+}
+
+:root {
+  --color-background: #f0f0f0;
+  --color-text: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #1a1a1a;
+    --color-text: #f0f0f0;
+  }
+}
+
+html {
+  color-scheme: light dark;
+  font-family: "InterVariable", system-ui, sans-serif;
+  font-optical-sizing: auto;
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  font-size: 1.25rem;
+}
