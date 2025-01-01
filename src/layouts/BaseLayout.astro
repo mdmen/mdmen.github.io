@@ -1,0 +1,42 @@
+---
+import BaseMeta from "@/components/BaseMeta.astro";
+import websiteConfig from "@/website.config";
+
+import "../styles/reset.css";
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage: string;
+}
+
+const { titleDefault, descriptionDefault, author } = websiteConfig;
+const {
+  title = titleDefault,
+  description = descriptionDefault,
+  ogImage,
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <BaseMeta
+      title={title}
+      description={description}
+      author={author}
+      ogImage={ogImage}
+    />
+
+    <link
+      rel="preload"
+      href="/fonts/InterVariable.woff2"
+      type="font/woff2"
+      as="font"
+      crossorigin
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

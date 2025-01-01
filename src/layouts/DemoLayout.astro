@@ -1,0 +1,29 @@
+---
+import BaseMeta from "@/components/BaseMeta.astro";
+
+import "@styles/reset.css";
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage: string;
+}
+
+const { title, description, ogImage } = Astro.props;
+
+const pageTitle = `${title} | Demo`;
+---
+
+<html lang="en">
+  <head>
+    <BaseMeta
+      title={pageTitle}
+      description={description}
+      ogImage={ogImage}
+      ogType="article"
+    />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
