@@ -1,0 +1,36 @@
+---
+import "./styles/scene.scss";
+import "./styles/book.scss";
+
+import BookSegments from "./BookSegments.astro";
+
+const segments = 8;
+---
+
+<div class="container">
+  <div class="scene">
+    <div class="shelf">
+      <div class="shelf-side shelf-side-front"></div>
+      <div class="shelf-side shelf-side-top"></div>
+    </div>
+    <div class="book" style="--_segments-count: {segments}">
+      <div class="book-cover book-cover-wide book-cover-front">
+        <div class="book-cover-inner book-cover-inner-front">
+          <div class="book-page book-page-turned"></div>
+        </div>
+      </div>
+      <div class="book-cover book-cover-wide book-cover-back">
+        <div class="book-cover-inner"></div>
+      </div>
+      <div class="book-cover book-cover-middle"></div>
+      <div class="book-side book-side-paper book-side-right"></div>
+      <div class="book-side book-side-paper book-side-top"></div>
+      <div class="book-side book-side-paper book-side-bottom"></div>
+      <div class="book-page book-page-stacked">
+        <div class="book-page-content"></div>
+        <BookSegments total={segments} />
+      </div>
+    </div>
+    <p class="unsupported">⚠️ Scroll-driven animations are not supported</p>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 ---
+import { ClientRouter } from "astro:transitions";
+
 interface Props {
   title: string;
   description: string;
@@ -45,3 +47,5 @@ const ogType = publishDate ? "article" : "website";
 <meta name="author" content={author} />
 <meta name="generator" content={Astro.generator} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+<ClientRouter />

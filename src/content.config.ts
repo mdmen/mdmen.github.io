@@ -20,7 +20,7 @@ const buildSchema =
       .extend(extraSchema);
 
 const projects = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: ".src/content/projects" }),
+  loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: ".src/content/projects" }),
   schema: buildSchema({
     demoLink: z.string().url().optional(),
     repoLink: z.string().url().optional(),
@@ -28,7 +28,10 @@ const projects = defineCollection({
 });
 
 const experiments = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./src/content/experiments" }),
+  loader: glob({
+    pattern: "**/[^_]*.{md,mdx}",
+    base: "./src/content/experiments",
+  }),
   schema: buildSchema({
     codepen: z.string().optional(),
   }),

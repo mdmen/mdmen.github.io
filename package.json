@@ -16,7 +16,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "astro": "^5.1.0"
+    "@astrojs/mdx": "^4.0.3",
+    "astro": "^5.1.10"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
