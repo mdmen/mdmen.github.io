@@ -1,31 +1,23 @@
 ---
-import "../styles/reset.css";
-import "../styles/global.css";
+import "@/styles/reset.css";
+import "@/styles/global.css";
 
 import BaseMeta from "@/components/BaseMeta.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import websiteConfig from "@/website.config";
 
 interface Props {
   title: string;
-  description: string;
-  ogImage: string;
+  description?: string;
+  ogImage?: string;
 }
 
-const { author } = websiteConfig;
 const { title, description, ogImage } = Astro.props;
 ---
 
 <html lang="en">
   <head>
-    <BaseMeta
-      title={title}
-      description={description}
-      author={author}
-      ogImage={ogImage}
-    />
-
+    <BaseMeta title={title} description={description} ogImage={ogImage} />
     <link
       rel="preload"
       href="/fonts/InterVariable.woff2"
@@ -37,7 +29,7 @@ const { title, description, ogImage } = Astro.props;
   <body>
     <div class="container">
       <Header />
-      <main>
+      <main class="content">
         <slot />
       </main>
       <Footer />

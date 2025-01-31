@@ -1,9 +1,25 @@
 ---
+import type { InferGetStaticPropsType } from "astro";
+import { getCollection, render } from "astro:content";
 import DemoLayout from "@/layouts/DemoLayout.astro";
 
-const pageTitle = "test";
+export const getStaticPaths = async () => {
+  const entries = await getCollection("experiments");
+
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+};
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry } = Astro.props;
+const { title } = entry.data;
+const { Content } = await render(entry);
 ---
 
-<DemoLayout title={pageTitle}>
-  <h1>Astro</h1>
+<DemoLayout title={title}>
+  <h1>{title}</h1>
+  <Content />
 </DemoLayout>

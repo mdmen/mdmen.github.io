@@ -1,10 +1,12 @@
 ---
-import WebsiteConfig from "@/website.config";
+import { websiteConfig } from "@/website.config";
 
 const year = new Date().getFullYear().toString();
-const { author } = WebsiteConfig;
+const { author } = websiteConfig;
 ---
 
-<footer>
-  Copyright &copy; <time datetime={year}>{year}</time> | {author}
+<footer class="footer">
+  <p class="copyright">
+    Copyright &copy; <time datetime={year}>{year}</time> 🚀 {author}
+  </p>
 </footer>

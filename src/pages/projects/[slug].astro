@@ -1,21 +1,25 @@
 ---
-import { getCollection, type CollectionEntry } from "astro:content";
+import type { InferGetStaticPropsType } from "astro";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 
-export interface Props {
-  project: CollectionEntry<"projects">;
-}
+export const getStaticPaths = async () => {
+  const entries = await getCollection("projects");
 
-export async function getStaticPaths() {
-  const projects = await getCollection("projects");
-
-  return projects.map((project: { slug: string }) => ({
-    params: { slug: project.slug },
-    props: { project },
+  return entries.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
   }));
-}
+};
 
-const { project } = Astro.props;
-const { Content } = await project.render();
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { entry } = Astro.props;
+const { title } = entry.data;
+const { Content } = await render(entry);
 ---
 
-<div><Content /></div>
+<BaseLayout title={title}>
+  <h1>{title}</h1>
+  <Content />
+</BaseLayout>

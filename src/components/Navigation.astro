@@ -1,0 +1,22 @@
+---
+import { navigationLinks } from "@/website.config";
+---
+
+<nav class="navigation" aria-label="Main menu">
+  {
+    navigationLinks.map((link) => {
+      const isCurrentPage = Astro.url.pathname === link.path;
+
+      return (
+        <a
+          href={link.path}
+          class:list={["navigation-link", { active: isCurrentPage }]}
+          aria-current={isCurrentPage ? "page" : false}
+          data-astro-prefetch
+        >
+          {link.name}
+        </a>
+      );
+    })
+  }
+</nav>

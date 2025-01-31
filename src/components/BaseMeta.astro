@@ -1,17 +1,22 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import { websiteConfig } from "@/website.config";
 
 interface Props {
   title: string;
-  description: string;
-  author: string;
+  description?: string;
   ogImage?: string;
   publishDate?: string;
   updateDate?: string;
 }
 
-const { title, description, publishDate, updateDate, ogImage, author } =
-  Astro.props;
+const { author, titleSuffix, defaultDescription } = websiteConfig;
+const {
+  title,
+  description = defaultDescription,
+  publishDate,
+  updateDate,
+  ogImage,
+} = Astro.props;
 
 const pageUrl = new URL(Astro.url.pathname, Astro.site);
 const imageUrl = new URL(ogImage || "/social-image.webp", Astro.url);
@@ -20,8 +25,8 @@ const ogType = publishDate ? "article" : "website";
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>{title}</title>
 <meta name="description" content={description} />
+<title>{title}{titleSuffix}</title>
 
 <meta property="og:title" content={title} />
 <meta property="og:type" content={ogType} />
@@ -47,5 +52,3 @@ const ogType = publishDate ? "article" : "website";
 <meta name="author" content={author} />
 <meta name="generator" content={Astro.generator} />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-
-<ClientRouter />
