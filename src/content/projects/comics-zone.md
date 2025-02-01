@@ -6,7 +6,7 @@ image:
   alt: "test"
 tags:
   - TypeScript
-  - Gamedev
+  - Game
 ---
 
 # Content

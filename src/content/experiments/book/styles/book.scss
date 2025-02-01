@@ -3,29 +3,11 @@
 @include helpers.property("_segments-count", "<integer>", true, 0);
 @include helpers.property("_segment-number", "<integer>", true, 0);
 @include helpers.property("segment-angle", "<angle>", false, 0deg);
-
-@property --some-value {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 0%;
-}
-
-@property --some-value-2 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: -30%;
-}
-
-@property --some-value-3 {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: -30%;
-}
+@include helpers.property("some-value", "<percentage>", false, 0%);
+@include helpers.property("some-value-2", "<percentage>", false, -30%);
+@include helpers.property("some-value-3", "<percentage>", false, -30%);
 
 .book {
-  --cover-front-image: url(../images/cover-front.webp);
-  --cover-back-image: url(../images/cover-back.webp);
-  --cover-middle-image: url(../images/cover-middle.webp);
   --cover-open-angle: -120deg;
   --book-width: 300px;
   --book-height: 400px;
@@ -95,7 +77,7 @@
       rgba(0, 0, 0, 0) 20%,
       rgba(255, 255, 255, 0.15) 50%,
       rgba(0, 0, 0, 0) 80%,
-      rgba(0, 0, 0, 0) 100%), var(--cover-front-image);
+      rgba(0, 0, 0, 0) 100%), url(../images/cover-front.webp);
   background-size: 200% 100%, 100% 100%;
   background-position: var(--some-value-2) center, center;
   background-repeat: no-repeat;
@@ -122,7 +104,7 @@
       rgba(0, 0, 0, 0) 20%,
       rgba(255, 255, 255, 0.15) 50%,
       rgba(0, 0, 0, 0) 75%,
-      rgba(0, 0, 0, 0) 100%), var(--cover-back-image);
+      rgba(0, 0, 0, 0) 100%), url(../images/cover-back.webp);
   background-size: 200% 100%, 100% 100%;
   background-position: var(--some-value-2) center, center;
   background-repeat: no-repeat;
@@ -167,7 +149,7 @@
   background-image: linear-gradient(90deg,
       rgba(0, 0, 0, 0) 0%,
       rgba(255, 255, 255, 0.2) 50%,
-      rgba(0, 0, 0, 0) 100%), var(--cover-middle-image);
+      rgba(0, 0, 0, 0) 100%), url(../images/cover-middle.webp);
   background-size: 70% 100%, 100% 100%;
   background-position: var(--some-value) center, center;
   background-repeat: no-repeat;
@@ -270,12 +252,6 @@
   inset: 0;
   border-image: url(../images/frame.webp) 30 / 30px;
   border-image-outset: 3px;
-}
-
-@property --segment-angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0deg;
 }
 
 .book-page-segment {

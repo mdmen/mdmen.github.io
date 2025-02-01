@@ -7,6 +7,6 @@ interface Props {
 const { index = 1, total } = Astro.props;
 ---
 
-<div class="book-page-segment" style="--_segment-number: {index}">
+<div class="book-page-segment" style={`--_segment-number: ${index}`}>
   {index < total && <Astro.self index={index + 1} total={total} />}
 </div>

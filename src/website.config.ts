@@ -8,16 +8,16 @@ export const websiteConfig = {
 
 export const navigationLinks = [
   {
-    name: "Home",
-    path: "/",
-  },
-  {
     name: "Projects",
     path: "/projects",
   },
   {
     name: "Experiments",
     path: "/experiments",
+  },
+  {
+    name: "Tags",
+    path: "/tags",
   },
   {
     name: "About",
