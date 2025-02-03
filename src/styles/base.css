@@ -4,33 +4,71 @@
   font-weight: 100 900;
   font-display: swap;
   /* https://github.com/rsms/inter */
-  src: url("/fonts/InterVariable.woff2") format("woff2");
+  src: url("/InterVariable.woff2") format("woff2");
 }
 
-:root,
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --color-background: #f0f0f0;
+  --color-background: #fff;
   --color-text: #1a1a1a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+:root[data-theme="dark"] {
+  color-scheme: dark;
 
-    --color-background: #1a1a1a;
-    --color-text: #f0f0f0;
-  }
-}
-
-html {
-  font-family: "InterVariable", system-ui, sans-serif;
-  font-optical-sizing: auto;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  --color-background: #1a1a1a;
+  --color-text: #fff;
 }
 
 body {
-  font-size: 1.25rem;
+  font-family: "InterVariable", system-ui, sans-serif;
+  font-optical-sizing: auto;
+  font-size: 1.15rem;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  transition: background-color 0.3s, color 0.3s;
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+a,
+button {
+  outline-offset: 0.3rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.container {
+  width: 50rem;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navigation-link {
+  color: var(--color-text);
+  text-decoration: none;
+
+  &.active {
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+  }
 }

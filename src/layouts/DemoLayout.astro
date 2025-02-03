@@ -2,6 +2,7 @@
 import "@/styles/demo.css";
 
 import BaseMeta from "@/components/BaseMeta.astro";
+import ThemeSync from "@/components/ThemeSync.astro";
 
 interface Props {
   title: string;
@@ -15,6 +16,7 @@ const { title, description, ogImage } = Astro.props;
 <html lang="en">
   <head>
     <BaseMeta title={title} description={description} ogImage={ogImage} />
+    <ThemeSync />
   </head>
   <body>
     <slot />

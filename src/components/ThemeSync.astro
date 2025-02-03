@@ -1,0 +1,24 @@
+<script is:inline>
+  function getCurrentTheme() {
+    return "theme" in localStorage
+      ? localStorage.getItem("theme")
+      : window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+  }
+
+  const root = document.documentElement;
+
+  if (getCurrentTheme() !== "light") {
+    root.setAttribute("data-theme", "dark");
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (event) => {
+        localStorage.removeItem("theme");
+        root.setAttribute("data-theme", event.matches ? "dark" : "light");
+      });
+  });
+</script>
