@@ -7,18 +7,21 @@
   src: url("/InterVariable.woff2") format("woff2");
 }
 
+:root,
 :root[data-theme="light"] {
   color-scheme: light;
 
   --color-background: #fff;
   --color-text: #1a1a1a;
+  --color-icons: #21252b;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --color-background: #1a1a1a;
+  --color-background: #21252b;
   --color-text: #fff;
+  --color-icons: #fff;
 }
 
 body {
@@ -27,14 +30,23 @@ body {
   font-size: 1.15rem;
   background-color: var(--color-background);
   color: var(--color-text);
-  transition: background-color 0.3s, color 0.3s;
-  min-width: 100vw;
+  transition: background-color 0.5s;
   min-height: 100vh;
 }
 
 a,
 button {
   outline-offset: 0.3rem;
+}
+
+a {
+  color: var(--color-text);
+  text-decoration-line: none;
+  text-underline-offset: 0.2rem;
+
+  &:hover {
+    text-decoration-line: underline;
+  }
 }
 
 h1 {
@@ -63,12 +75,12 @@ h1 {
   gap: 1rem;
 }
 
-.navigation-link {
-  color: var(--color-text);
-  text-decoration: none;
+.navigation-link.active {
+  text-decoration-line: underline;
+}
 
-  &.active {
-    text-decoration: underline;
-    text-underline-offset: 0.2rem;
-  }
+.icon {
+  width: 1.7rem;
+  height: 1.7rem;
+  color: var(--color-icons);
 }

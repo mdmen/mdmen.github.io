@@ -9,8 +9,8 @@ const buildSchema =
         title: z.string(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
-        publishDate: z.string().date().optional(),
-        updateDate: z.string().date().optional(),
+        publishDate: z.date().optional(),
+        updateDate: z.date().optional(),
         ogImage: image()
           .refine((img) => img.width >= 600 && img.height >= 315, {
             message: "Open Graph image must be at least 600x315 pixels",

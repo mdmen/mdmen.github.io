@@ -13,7 +13,7 @@ interface Props {
 const { title, description, ogImage } = Astro.props;
 ---
 
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <BaseMeta title={title} description={description} ogImage={ogImage} />
     <ThemeSync />

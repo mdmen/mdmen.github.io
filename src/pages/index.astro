@@ -1,5 +1,9 @@
 ---
+import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Post from "@/components/Post.astro";
+
+const projects = await getCollection("projects");
 ---
 
 <BaseLayout title="Personal website">
@@ -10,4 +14,26 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     JavaScript ecosystem. I am actively seeking opportunities to further enhance
     my skills and expand my knowledge in this dynamic field
   </p>
+  <section>
+    <h2>Projects</h2>
+    {
+      projects.length ? (
+        <ul>
+          {projects.map(({ id, data }) => (
+            <li>
+              <Post
+                title={data.title}
+                link={`/projects/${id}`}
+                description={data.description}
+                tags={data.tags}
+                publishDate={data.publishDate}
+              />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>There are no projects yet</p>
+      )
+    }
+  </section>
 </BaseLayout>
