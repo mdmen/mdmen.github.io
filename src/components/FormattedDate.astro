@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 export interface Props {
   date: Date;
   className?: string;
@@ -7,7 +9,8 @@ export interface Props {
 const { date, className } = Astro.props;
 ---
 
-<time class:list={className} datetime={date.toISOString()}>
+<time class:list={["date", className]} datetime={date.toISOString()}>
+  <Icon icon="date" className="date-icon" />
   {
     date.toLocaleDateString("en-US", {
       year: "numeric",

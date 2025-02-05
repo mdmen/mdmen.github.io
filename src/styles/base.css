@@ -13,7 +13,7 @@
 
   --color-background: #fff;
   --color-text: #1a1a1a;
-  --color-icons: #21252b;
+  --color-icons: #768694;
 }
 
 :root[data-theme="dark"] {
@@ -79,8 +79,17 @@ h1 {
   text-decoration-line: underline;
 }
 
+.theme-icon,
 .icon {
   width: 1.7rem;
   height: 1.7rem;
   color: var(--color-icons);
+}
+
+.icon {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }

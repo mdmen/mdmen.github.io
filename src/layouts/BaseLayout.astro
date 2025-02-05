@@ -5,6 +5,7 @@ import "@/styles/base.css";
 
 import BaseMeta from "@/components/BaseMeta.astro";
 import ThemeSync from "@/components/ThemeSync.astro";
+import IconsProvider from "@/components/IconsProvider.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
@@ -23,6 +24,7 @@ const { title, description, ogImage } = Astro.props;
     <ThemeSync />
   </head>
   <body>
+    <IconsProvider />
     <div class="container">
       <Header />
       <main class="content">

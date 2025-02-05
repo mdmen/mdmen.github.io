@@ -1,17 +1,27 @@
 ---
+import Icon from "./Icon.astro";
+
 export interface Props {
   tags: string[];
+  className?: string;
 }
 
-const { tags } = Astro.props;
+const { tags, className } = Astro.props;
 ---
 
 {
-  tags?.length && (
-    <ul class="post-tags">
-      {tags.map((tag) => (
-        <li class="post-tag">{tag}</li>
-      ))}
-    </ul>
+  tags.length > 0 && (
+    <div class:list={["tags", className]}>
+      <Icon icon="tags" className="tags-icon" />
+      <ul class="tags-list">
+        {tags.map((tag) => (
+          <li class="tags-item">
+            <a href={`/tags/${tag}`} class="tags-item-link" data-astro-prefetch>
+              {tag}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }
