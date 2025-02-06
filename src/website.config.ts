@@ -1,3 +1,5 @@
+import type { Icons, SocialLink } from "@/types/common";
+
 const author = "Dmitry Menovshchikov";
 
 export const websiteConfig = {
@@ -15,12 +17,17 @@ export const navigationLinks = [
     name: "Experiments",
     path: "/experiments",
   },
+];
+
+export const socialLinks: SocialLink[] = [
   {
-    name: "Tags",
-    path: "/tags",
+    name: "Github",
+    link: "https://github.com/mdmen",
+    icon: "github",
   },
   {
-    name: "About",
-    path: "/about",
+    name: "Codepen",
+    link: "https://codepen.io/mdmen",
+    icon: "codepen",
   },
 ];

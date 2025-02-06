@@ -1,12 +1,14 @@
 ---
+import type { Icons } from "@/types/common";
+
 export interface Props {
-  icon: "date" | "tags";
+  icon: Icons;
   className?: string;
 }
 
 const { className, icon } = Astro.props;
 ---
 
-<svg class:list={["icon", className]} aria-hidden="true">
+<svg class:list={["icon", "lucide-icon", className]} aria-hidden="true">
   <use href={`#${icon}`}></use>
 </svg>

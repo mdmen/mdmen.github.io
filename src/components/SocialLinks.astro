@@ -1,0 +1,27 @@
+---
+import type { Icons } from "@/types/common";
+import Icon from "./Icon.astro";
+
+interface Item {
+  name: string;
+  link: string;
+  icon: Icons;
+}
+
+export interface Props {
+  items: Item[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="social-links">
+  {
+    items.map(({ link, name, icon }) => (
+      <a href={link} class="social-links-item" target="_blank">
+        <Icon icon={icon} className="social-links-icon" />
+        <span class="visually-hidden">{name}</span>
+      </a>
+    ))
+  }
+</div>

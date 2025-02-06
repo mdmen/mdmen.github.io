@@ -8,7 +8,6 @@ const buildSchema =
       .object({
         title: z.string(),
         description: z.string().optional(),
-        tags: z.array(z.string()).optional(),
         publishDate: z.date().optional(),
         updateDate: z.date().optional(),
         ogImage: image()

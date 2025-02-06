@@ -1,9 +1,10 @@
 ---
 import ThemeToggler from "./ThemeToggler.astro";
 import Navigation from "./Navigation.astro";
+import { navigationLinks } from "@/website.config";
 ---
 
 <header class="header">
-  <Navigation />
+  <Navigation items={navigationLinks} />
   <ThemeToggler />
 </header>

@@ -1,25 +1,24 @@
 ---
+import type { Icons } from "./IconsProvider.astro";
 import FormattedDate from "./FormattedDate.astro";
-import Tags from "./Tags.astro";
 
 export interface Props {
   title: string;
   link: string;
-  description?: string;
+  icon?: Icons;
   publishDate?: Date;
-  tags?: string[];
+  description?: string;
 }
 
-const { title, link, description, publishDate, tags } = Astro.props;
+const { title, link, publishDate, description } = Astro.props;
 ---
 
 <article class="post">
-  <a class="post-link" href={link} data-astro-prefetch>
-    <h3 class="post-title">{title}</h3>
-  </a>
+  <h3 class="post-title">
+    <a class="post-link" href={link} data-astro-prefetch>{title}</a>
+  </h3>
   <div class="post-info">
     {publishDate && <FormattedDate date={publishDate} className="post-date" />}
-    {tags && <Tags tags={tags} className="post-tags" />}
   </div>
 
   {description && <p class="post-description">{description}</p>}
