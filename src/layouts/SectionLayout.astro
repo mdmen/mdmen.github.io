@@ -1,0 +1,20 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import type { Icons } from "@/types/common";
+import Icon from "@/components/Icon.astro";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{ as: Tag }> & {
+  title: string;
+  icon?: Icons;
+};
+
+const { as: Caption = "h2", title, icon } = Astro.props;
+---
+
+<section class="section">
+  <Caption class="section-title">
+    <span>{title}</span>
+    {icon && <Icon icon={icon} />}
+  </Caption>
+  <slot />
+</section>

@@ -1,4 +1,4 @@
-import type { Icons, SocialLink } from "@/types/common";
+import type { SocialLink } from "@/types/common";
 
 const author = "Dmitry Menovshchikov";
 
@@ -9,6 +9,10 @@ export const websiteConfig = {
 };
 
 export const navigationLinks = [
+  {
+    name: "Home",
+    path: "/",
+  },
   {
     name: "Projects",
     path: "/projects",

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionLayout from "@/layouts/SectionLayout.astro";
 import Post from "@/components/Post.astro";
 
 const [projects, experiments] = await Promise.all([
@@ -10,17 +11,15 @@ const [projects, experiments] = await Promise.all([
 ---
 
 <BaseLayout title="Personal website">
-  <section class="section">
-    <h1>Hello there 👋</h1>
+  <SectionLayout title="Hello there" as="h1">
     <p>
       I'm Dmitry, a Frontend Developer with over four years of hands-on
       experience, passionate about client-side development and the broader
       JavaScript ecosystem. I am actively seeking opportunities to further
       enhance my skills and expand my knowledge in this dynamic field
     </p>
-  </section>
-  <section class="section">
-    <h2>Projects</h2>
+  </SectionLayout>
+  <SectionLayout title="Projects" as="h2" icon="atom">
     {
       projects.map(({ id, data }) => (
         <Post
@@ -31,9 +30,8 @@ const [projects, experiments] = await Promise.all([
         />
       ))
     }
-  </section>
-  <section class="section">
-    <h2>Experiments</h2>
+  </SectionLayout>
+  <SectionLayout title="Experiments" as="h2" icon="flask">
     {
       experiments.map(({ id, data }) => (
         <Post
@@ -44,5 +42,5 @@ const [projects, experiments] = await Promise.all([
         />
       ))
     }
-  </section>
+  </SectionLayout>
 </BaseLayout>

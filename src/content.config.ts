@@ -18,9 +18,11 @@ const buildSchema =
       })
       .extend(extraSchema);
 
+const pattern = "**/[^_]*.{md,mdx}";
+
 const projects = defineCollection({
   loader: glob({
-    pattern: "**/[^_]*.{md,mdx}",
+    pattern,
     base: "./src/content/projects",
   }),
   schema: buildSchema({
@@ -31,7 +33,7 @@ const projects = defineCollection({
 
 const experiments = defineCollection({
   loader: glob({
-    pattern: "**/[^_]*.{md,mdx}",
+    pattern,
     base: "./src/content/experiments",
   }),
   schema: buildSchema({

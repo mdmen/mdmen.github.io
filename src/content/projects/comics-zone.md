@@ -1,7 +1,7 @@
 ---
 title: "Comics Zone: Multiverse"
-description: "test"
-publishDate: 2020-01-01
+description: "An attempt to create HTML5 spin-off for the great SEGA game called Comix Zone"
+publishDate: 2024-01-03
 ---
 
 # Content
