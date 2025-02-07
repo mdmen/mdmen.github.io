@@ -1,4 +1,4 @@
-export type Icons = "calendar" | "flask" | "github" | "codepen" | "atom";
+export type Icons = "flask" | "github" | "codepen" | "atom";
 
 export interface SocialLink {
   name: string;

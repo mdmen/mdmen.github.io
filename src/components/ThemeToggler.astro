@@ -19,34 +19,40 @@
 </button>
 
 <script>
-  const root = document.documentElement;
-  const toggle = document.querySelector(".theme-toggle") as HTMLButtonElement;
-
-  const toggleClassName = (isDark: boolean) => {
+  function toggleClassName(isDark: boolean) {
+    const toggle = document.querySelector(".theme-toggle");
     const toggledClass = "theme-toggle--toggled";
 
     if (isDark) {
-      toggle.classList.add(toggledClass);
+      toggle?.classList.add(toggledClass);
     } else {
-      toggle.classList.remove(toggledClass);
+      toggle?.classList.remove(toggledClass);
     }
-  };
+  }
 
-  toggleClassName(getCurrentTheme() === "dark");
-
-  toggle.addEventListener("click", () => {
-    const currentTheme = getCurrentTheme();
-    const nextTheme = currentTheme === "light" ? "dark" : "light";
-
-    localStorage.setItem("theme", nextTheme);
-    root.setAttribute("data-theme", nextTheme);
-
-    toggleClassName(nextTheme === "dark");
-  });
+  function syncTogglerClass() {
+    toggleClassName(getCurrentTheme() === "dark");
+  }
 
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (event) => {
       toggleClassName(event.matches);
     });
+
+  syncTogglerClass();
+
+  document.addEventListener("astro:after-swap", syncTogglerClass);
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelector(".theme-toggle")?.addEventListener("click", () => {
+      const currentTheme = getCurrentTheme();
+      const nextTheme = currentTheme === "light" ? "dark" : "light";
+
+      localStorage.setItem("theme", nextTheme);
+      document.documentElement.dataset.theme = nextTheme;
+
+      toggleClassName(nextTheme === "dark");
+    });
+  });
 </script>

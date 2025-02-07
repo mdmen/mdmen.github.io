@@ -7,18 +7,24 @@
         : "light";
   }
 
-  const root = document.documentElement;
-
-  if (getCurrentTheme() !== "light") {
-    root.setAttribute("data-theme", "dark");
-  }
-
   document.addEventListener("DOMContentLoaded", () => {
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", (event) => {
         localStorage.removeItem("theme");
-        root.setAttribute("data-theme", event.matches ? "dark" : "light");
+        document.documentElement.dataset.theme = event.matches
+          ? "dark"
+          : "light";
       });
   });
+
+  function syncTheme() {
+    if (getCurrentTheme() !== "light") {
+      document.documentElement.dataset.theme = "dark";
+    }
+  }
+
+  document.addEventListener("astro:after-swap", syncTheme);
+
+  syncTheme();
 </script>

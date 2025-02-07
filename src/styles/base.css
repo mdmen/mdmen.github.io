@@ -1,28 +1,48 @@
 @font-face {
+  /* https://github.com/rsms/inter */
   font-family: "InterVariable";
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  /* https://github.com/rsms/inter */
   src: url("/InterVariable.woff2") format("woff2");
 }
 
 :root {
-  --size-icons-sm: 1.475rem;
-  --size-icons-base: 1.7rem;
+  --font-family: "InterVariable";
 
-  --text-sm: 1rem;
-  --text-base: 1.125rem;
-  --text-lg: 1.25rem;
-  --text-xl: 1.5rem;
+  --spacing-unit: 0.125rem;
+  --spacing-0: calc(var(--spacing-unit) * 1);
+  --spacing-1: calc(var(--spacing-unit) * 2);
+  --spacing-2: calc(var(--spacing-unit) * 4);
+  --spacing-3: calc(var(--spacing-unit) * 6);
+  --spacing-4: calc(var(--spacing-unit) * 8);
+  --spacing-5: calc(var(--spacing-unit) * 10);
+  --spacing-6: calc(var(--spacing-unit) * 12);
+  --spacing-7: calc(var(--spacing-unit) * 14);
+  --spacing-8: calc(var(--spacing-unit) * 16);
+  --spacing-9: calc(var(--spacing-unit) * 18);
+
+  --font-size-unit: 0.125rem;
+  --font-size-0: calc(var(--font-size-unit) * 7);
+  --font-size-1: calc(var(--font-size-unit) * 8);
+  --font-size-2: calc(var(--font-size-unit) * 9);
+  --font-size-3: calc(var(--font-size-unit) * 10);
+  --font-size-4: calc(var(--font-size-unit) * 12);
+  --font-size-5: calc(var(--font-size-unit) * 14);
+  --font-size-6: calc(var(--font-size-unit) * 16);
+
+  --size-icons-sm: 1.375rem;
+  --size-icons-base: 1.75rem;
 }
 
+:root,
 :root[data-theme="light"] {
   color-scheme: light;
 
   --color-background: #fff;
   --color-text: #1a1a1a;
   --color-icons: #768694;
+  --color-icons-hover: #4c565f;
 }
 
 :root[data-theme="dark"] {
@@ -34,9 +54,9 @@
 }
 
 body {
-  font-family: "InterVariable", system-ui, sans-serif;
+  font-family: var(--font-family), system-ui, sans-serif;
   font-optical-sizing: auto;
-  font-size: 1.15rem;
+  font-size: var(--font-size-2);
   background-color: var(--color-background);
   color: var(--color-text);
   transition: background-color 0.5s;
@@ -45,29 +65,43 @@ body {
 
 a,
 button {
-  outline-offset: 0.3rem;
+  outline-offset: var(--spacing-1);
+
+  &:is(:hover, :focus-visible) .icon {
+    color: var(--color-icons-hover);
+  }
 }
 
 a {
   color: var(--color-text);
   text-decoration-line: none;
-  text-underline-offset: 0.2rem;
+  text-underline-offset: var(--spacing-0);
 
   &:hover {
     text-decoration-line: underline;
   }
+
+  &:focus-visible {
+    text-decoration-line: none;
+  }
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: var(--font-size-5);
   font-weight: 600;
-  margin-bottom: 0.75rem;
+  margin-bottom: var(--spacing-3);
 }
 
 h2 {
-  font-size: 1.75rem;
+  font-size: var(--font-size-4);
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: var(--spacing-2);
+}
+
+h3 {
+  font-size: var(--font-size-3);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
 }
 
 .visually-hidden {
@@ -84,18 +118,19 @@ h2 {
   width: 50rem;
   max-width: 100%;
   margin: 0 auto;
-  padding: 1rem;
+  padding: var(--spacing-4);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 3rem;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-8);
 }
 
 .section {
-  margin-bottom: 1.75rem;
+  margin-bottom: var(--spacing-7);
 }
 
 .section-title {
@@ -107,16 +142,18 @@ h2 {
 .navigation {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: var(--spacing-4);
 }
 
-.navigation-link.active {
+.navigation-link.active:not(:focus-visible) {
   text-decoration-line: underline;
 }
 
 .icon {
   width: var(--size-icons-base);
   height: var(--size-icons-base);
+  min-width: var(--size-icons-base);
   color: var(--color-icons);
 }
 
@@ -145,29 +182,19 @@ h2 {
   }
 }
 
-.post-info {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-bottom: 0.4rem;
-  font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-icons);
-}
-
-.post-info .icon {
-  width: var(--size-icons-sm);
-  height: var(--size-icons-sm);
-}
-
-.date {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: var(--spacing-9);
+}
+
+.divider {
+  border: none;
+  border-top: 2px dashed #ccc;
+  margin: 0;
+}
+
+.section-divider {
+  margin: var(--spacing-7) 0;
 }

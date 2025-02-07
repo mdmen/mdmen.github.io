@@ -11,14 +11,17 @@ const [projects, experiments] = await Promise.all([
 ---
 
 <BaseLayout title="Personal website">
-  <SectionLayout title="Hello there" as="h1">
+  <SectionLayout title="Hi there! I'm Dmitry" as="h1">
     <p>
-      I'm Dmitry, a Frontend Developer with over four years of hands-on
-      experience, passionate about client-side development and the broader
-      JavaScript ecosystem. I am actively seeking opportunities to further
-      enhance my skills and expand my knowledge in this dynamic field
+      A Frontend Developer with over four years of hands-on experience,
+      passionate about client-side development and the broader JavaScript
+      ecosystem. I am actively seeking opportunities to further enhance my
+      skills and expand my knowledge in this dynamic field.
     </p>
   </SectionLayout>
+
+  <hr class="divider section-divider" />
+
   <SectionLayout title="Projects" as="h2" icon="atom">
     {
       projects.map(({ id, data }) => (
@@ -31,6 +34,9 @@ const [projects, experiments] = await Promise.all([
       ))
     }
   </SectionLayout>
+
+  <hr class="divider section-divider" />
+
   <SectionLayout title="Experiments" as="h2" icon="flask">
     {
       experiments.map(({ id, data }) => (

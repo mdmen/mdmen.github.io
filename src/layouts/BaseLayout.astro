@@ -3,6 +3,7 @@ import "@/styles/reset.css";
 import "@/styles/theme-toggler.css";
 import "@/styles/base.css";
 
+import { ClientRouter } from "astro:transitions";
 import BaseMeta from "@/components/BaseMeta.astro";
 import ThemeSync from "@/components/ThemeSync.astro";
 import IconsProvider from "@/components/IconsProvider.astro";
@@ -21,13 +22,14 @@ const { title, description, ogImage } = Astro.props;
 <html lang="en" data-theme="light">
   <head>
     <BaseMeta title={title} description={description} ogImage={ogImage} />
+    <ClientRouter />
     <ThemeSync />
   </head>
   <body>
     <IconsProvider />
     <div class="container">
       <Header />
-      <main class="content">
+      <main class="content" transition:animate="fade">
         <slot />
       </main>
       <Footer />
