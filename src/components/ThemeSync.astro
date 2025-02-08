@@ -7,22 +7,24 @@
         : "light";
   }
 
+  function setTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+  }
+
+  function syncTheme() {
+    if (getCurrentTheme() !== "light") {
+      setTheme("dark");
+    }
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
     window
       .matchMedia("(prefers-color-scheme: dark)")
       .addEventListener("change", (event) => {
         localStorage.removeItem("theme");
-        document.documentElement.dataset.theme = event.matches
-          ? "dark"
-          : "light";
+        setTheme(event.matches ? "dark" : "light");
       });
   });
-
-  function syncTheme() {
-    if (getCurrentTheme() !== "light") {
-      document.documentElement.dataset.theme = "dark";
-    }
-  }
 
   document.addEventListener("astro:after-swap", syncTheme);
 

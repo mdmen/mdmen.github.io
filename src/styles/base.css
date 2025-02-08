@@ -1,14 +1,19 @@
 @font-face {
-  /* https://github.com/rsms/inter */
-  font-family: "InterVariable";
+  /* 
+  * https://github.com/rsms/inter
+  * https://github.com/philipbelesky/inter-ui
+  */
+  font-family: InterVariable;
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
-  src: url("/InterVariable.woff2") format("woff2");
+  src: url("/InterVariable-subset.woff2") format("woff2");
 }
 
 :root {
-  --font-family: "InterVariable";
+  --font-family: InterVariable;
+  --font-family-fallback: system-ui, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
   --spacing-unit: 0.125rem;
   --spacing-0: calc(var(--spacing-unit) * 1);
@@ -23,15 +28,14 @@
   --spacing-9: calc(var(--spacing-unit) * 18);
 
   --font-size-unit: 0.125rem;
-  --font-size-0: calc(var(--font-size-unit) * 7);
-  --font-size-1: calc(var(--font-size-unit) * 8);
-  --font-size-2: calc(var(--font-size-unit) * 9);
-  --font-size-3: calc(var(--font-size-unit) * 10);
-  --font-size-4: calc(var(--font-size-unit) * 12);
-  --font-size-5: calc(var(--font-size-unit) * 14);
-  --font-size-6: calc(var(--font-size-unit) * 16);
+  --font-size-sm: calc(var(--font-size-unit) * 7);
+  --font-size-base: calc(var(--font-size-unit) * 8);
+  --font-size-lg: calc(var(--font-size-unit) * 9);
+  --font-size-xl: calc(var(--font-size-unit) * 10);
+  --font-size-2xl: calc(var(--font-size-unit) * 12);
+  --font-size-3xl: calc(var(--font-size-unit) * 14);
+  --font-size-4xl: calc(var(--font-size-unit) * 16);
 
-  --size-icons-sm: 1.375rem;
   --size-icons-base: 1.75rem;
 }
 
@@ -54,9 +58,10 @@
 }
 
 body {
-  font-family: var(--font-family), system-ui, sans-serif;
+  font-family: var(--font-family), var(--font-family-fallback);
   font-optical-sizing: auto;
-  font-size: var(--font-size-2);
+  font-size: var(--font-size-lg);
+  text-rendering: optimizeLegibility;
   background-color: var(--color-background);
   color: var(--color-text);
   transition: background-color 0.5s;
@@ -65,6 +70,7 @@ body {
 
 a,
 button {
+  cursor: pointer;
   outline-offset: var(--spacing-1);
 
   &:is(:hover, :focus-visible) .icon {
@@ -87,19 +93,19 @@ a {
 }
 
 h1 {
-  font-size: var(--font-size-5);
+  font-size: var(--font-size-3xl);
   font-weight: 600;
   margin-bottom: var(--spacing-3);
 }
 
 h2 {
-  font-size: var(--font-size-4);
+  font-size: var(--font-size-2xl);
   font-weight: 600;
   margin-bottom: var(--spacing-2);
 }
 
 h3 {
-  font-size: var(--font-size-3);
+  font-size: var(--font-size-xl);
   font-weight: 600;
   margin-bottom: var(--spacing-2);
 }
@@ -167,11 +173,11 @@ h3 {
 
 .social-links {
   display: flex;
-  gap: 0.7rem;
+  gap: var(--spacing-4);
 }
 
 .post-title {
-  margin-bottom: 0.2rem;
+  margin-bottom: var(--spacing-1);
 }
 
 .post-link {

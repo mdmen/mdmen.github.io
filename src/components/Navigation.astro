@@ -13,17 +13,22 @@ const { items } = Astro.props;
 
 <nav class="navigation" aria-label="Main menu">
   {
-    items.map((item) => {
-      const isCurrentPage = Astro.url.pathname === item.path;
+    items.map(({ name, path }) => {
+      const isHighlighted =
+        path === "/"
+          ? Astro.url.pathname === "/"
+          : Astro.url.pathname.startsWith(path);
+
+      const isCurrentPage = Astro.url.pathname === path;
 
       return (
         <a
-          href={item.path}
-          class:list={["navigation-link", { active: isCurrentPage }]}
+          href={path}
+          class:list={["navigation-link", { active: isHighlighted }]}
           aria-current={isCurrentPage ? "page" : false}
           data-astro-prefetch
         >
-          {item.name}
+          {name}
         </a>
       );
     })

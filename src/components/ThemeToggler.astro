@@ -1,58 +1,36 @@
-<button class="theme-toggle" type="button" aria-label="Toggle theme">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 32 32"
-    fill="currentColor"
-    class="theme-toggle__expand icon"
-    aria-hidden="true"
-  >
-    <clipPath id="theme-toggle__expand__cutout">
-      <path d="M0-11h25a1 1 0 0017 13v30H0Z"></path>
-    </clipPath>
-    <g clip-path="url(#theme-toggle__expand__cutout)">
-      <circle cx="16" cy="16" r="8.4"></circle>
-      <path
-        d="M18.3 3.2c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3S14.7.9 16 .9s2.3 1 2.3 2.3zm-4.6 25.6c0-1.3 1-2.3 2.3-2.3s2.3 1 2.3 2.3-1 2.3-2.3 2.3-2.3-1-2.3-2.3zm15.1-10.5c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zM3.2 13.7c1.3 0 2.3 1 2.3 2.3s-1 2.3-2.3 2.3S.9 17.3.9 16s1-2.3 2.3-2.3zm5.8-7C9 7.9 7.9 9 6.7 9S4.4 8 4.4 6.7s1-2.3 2.3-2.3S9 5.4 9 6.7zm16.3 21c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm2.4-21c0 1.3-1 2.3-2.3 2.3S23 7.9 23 6.7s1-2.3 2.3-2.3 2.4 1 2.4 2.3zM6.7 23C8 23 9 24 9 25.3s-1 2.3-2.3 2.3-2.3-1-2.3-2.3 1-2.3 2.3-2.3z"
-      ></path>
-    </g>
-  </svg>
+---
+import Icon from "./Icon.astro";
+---
+
+<button class="theme-toggle" type="button">
+  <Icon icon="sun" className="theme-toggle-icon light" />
+  <Icon icon="moon" className="theme-toggle-icon dark" />
+  <span class="visually-hidden">Toggle theme</span>
 </button>
 
+<style is:global>
+  .theme-toggle-icon {
+    display: none;
+  }
+
+  [data-theme="light"] .theme-toggle-icon.light,
+  [data-theme="dark"] .theme-toggle-icon.dark {
+    display: block;
+  }
+</style>
+
 <script>
-  function toggleClassName(isDark: boolean) {
-    const toggle = document.querySelector(".theme-toggle");
-    const toggledClass = "theme-toggle--toggled";
+  function toggleTheme() {
+    const currentTheme = getCurrentTheme();
+    const nextTheme = currentTheme === "light" ? "dark" : "light";
 
-    if (isDark) {
-      toggle?.classList.add(toggledClass);
-    } else {
-      toggle?.classList.remove(toggledClass);
-    }
+    localStorage.setItem("theme", nextTheme);
+    document.documentElement.dataset.theme = nextTheme;
   }
-
-  function syncTogglerClass() {
-    toggleClassName(getCurrentTheme() === "dark");
-  }
-
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (event) => {
-      toggleClassName(event.matches);
-    });
-
-  syncTogglerClass();
-
-  document.addEventListener("astro:after-swap", syncTogglerClass);
 
   document.addEventListener("astro:page-load", () => {
-    document.querySelector(".theme-toggle")?.addEventListener("click", () => {
-      const currentTheme = getCurrentTheme();
-      const nextTheme = currentTheme === "light" ? "dark" : "light";
-
-      localStorage.setItem("theme", nextTheme);
-      document.documentElement.dataset.theme = nextTheme;
-
-      toggleClassName(nextTheme === "dark");
-    });
+    document
+      .querySelector(".theme-toggle")
+      ?.addEventListener("click", toggleTheme);
   });
 </script>

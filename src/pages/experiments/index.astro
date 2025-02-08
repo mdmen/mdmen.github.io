@@ -13,9 +13,8 @@ const experiments = await getCollection("experiments");
       experiments.map(({ id, data }) => (
         <Post
           title={data.title}
-          link={`/experiments/${id}`}
+          link={`/experiments/${id}/`}
           description={data.description}
-          publishDate={data.publishDate}
         />
       ))
     }

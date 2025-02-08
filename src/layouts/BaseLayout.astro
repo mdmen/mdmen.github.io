@@ -1,12 +1,10 @@
 ---
 import "@/styles/reset.css";
-import "@/styles/theme-toggler.css";
 import "@/styles/base.css";
 
 import { ClientRouter } from "astro:transitions";
 import BaseMeta from "@/components/BaseMeta.astro";
 import ThemeSync from "@/components/ThemeSync.astro";
-import IconsProvider from "@/components/IconsProvider.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 
@@ -24,9 +22,15 @@ const { title, description, ogImage } = Astro.props;
     <BaseMeta title={title} description={description} ogImage={ogImage} />
     <ClientRouter />
     <ThemeSync />
+    <link
+      rel="preload"
+      href="/InterVariable-subset.woff2"
+      type="font/woff2"
+      as="font"
+      crossorigin
+    />
   </head>
   <body>
-    <IconsProvider />
     <div class="container">
       <Header />
       <main class="content" transition:animate="fade">

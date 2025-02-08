@@ -15,23 +15,28 @@ export const navigationLinks = [
   },
   {
     name: "Projects",
-    path: "/projects",
+    path: "/projects/",
   },
   {
     name: "Experiments",
-    path: "/experiments",
+    path: "/experiments/",
   },
 ];
 
 export const socialLinks: SocialLink[] = [
   {
-    name: "Github",
-    link: "https://github.com/mdmen",
-    icon: "github",
+    name: "Email",
+    link: "mailto:test@email.com",
+    icon: "email",
   },
   {
     name: "Codepen",
     link: "https://codepen.io/mdmen",
     icon: "codepen",
+  },
+  {
+    name: "Github",
+    link: "https://github.com/mdmen",
+    icon: "github",
   },
 ];

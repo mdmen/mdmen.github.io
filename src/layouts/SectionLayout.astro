@@ -13,8 +13,8 @@ const { as: Caption = "h2", title, icon } = Astro.props;
 
 <section class="section">
   <Caption class="section-title">
-    <span>{title}</span>
     {icon && <Icon icon={icon} />}
+    <span>{title}</span>
   </Caption>
   <slot />
 </section>
