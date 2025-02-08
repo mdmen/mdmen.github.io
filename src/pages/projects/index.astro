@@ -15,6 +15,7 @@ const projects = await getCollection("projects");
           title={data.title}
           link={`/projects/${id}/`}
           description={data.description}
+          tags={data.tags}
         />
       ))
     }

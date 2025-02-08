@@ -34,3 +34,16 @@ const { items } = Astro.props;
     })
   }
 </nav>
+
+<style>
+  .navigation {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-4);
+  }
+
+  .navigation-link.active:not(:focus-visible) {
+    text-decoration-line: underline;
+  }
+</style>

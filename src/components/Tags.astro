@@ -1,0 +1,45 @@
+---
+import Icon from "./Icon.astro";
+
+export interface Props {
+  tags: string[];
+  class?: string;
+}
+
+const { tags, class: className, ...rest } = Astro.props;
+---
+
+{
+  tags.length > 0 && (
+    <div class:list={["tags", className]} {...rest}>
+      <Icon icon="tags" class="tags-icon" />
+      <ul class="tags-list">
+        {tags.map((tag) => (
+          <li class="tags-item">{tag}</li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+<style>
+  .tags {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+
+  .tags-list {
+    display: flex;
+    gap: var(--spacing-1);
+  }
+
+  .tags-item {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    padding: 0 var(--spacing-1);
+    background-color: #aeaeae;
+    color: #fff;
+    border-radius: 0.4em;
+  }
+</style>

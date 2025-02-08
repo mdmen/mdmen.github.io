@@ -29,6 +29,7 @@ const [projects, experiments] = await Promise.all([
           title={data.title}
           link={`/projects/${id}/`}
           description={data.description}
+          tags={data.tags}
         />
       ))
     }
@@ -43,6 +44,7 @@ const [projects, experiments] = await Promise.all([
           title={data.title}
           link={`/experiments/${id}/`}
           description={data.description}
+          tags={data.tags}
         />
       ))
     }

@@ -5,7 +5,8 @@ export type Icons =
   | "atom"
   | "email"
   | "sun"
-  | "moon";
+  | "moon"
+  | "tags";
 
 export interface SocialLink {
   name: string;

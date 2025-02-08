@@ -3,12 +3,33 @@ import type { Icons } from "@/types/common";
 
 export interface Props {
   icon: Icons;
-  className?: string;
+  class?: string;
 }
 
-const { className, icon } = Astro.props;
+const { class: className, icon, ...rest } = Astro.props;
 ---
 
-<svg class:list={["icon", "lucide-icon", className]} aria-hidden="true">
+<svg
+  class:list={["icon", "lucide-icon", className]}
+  aria-hidden="true"
+  {...rest}
+>
   <use href={`/icons.svg#${icon}`}></use>
 </svg>
+
+<style>
+  .icon {
+    width: var(--size-icons-base);
+    height: var(--size-icons-base);
+    min-width: var(--size-icons-base);
+    color: var(--color-icons);
+  }
+
+  .lucide-icon {
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+</style>

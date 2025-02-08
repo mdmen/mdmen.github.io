@@ -15,6 +15,7 @@ const experiments = await getCollection("experiments");
           title={data.title}
           link={`/experiments/${id}/`}
           description={data.description}
+          tags={data.tags}
         />
       ))
     }

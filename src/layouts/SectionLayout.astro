@@ -18,3 +18,15 @@ const { as: Caption = "h2", title, icon } = Astro.props;
   </Caption>
   <slot />
 </section>
+
+<style>
+  .section {
+    margin-bottom: var(--spacing-7);
+  }
+
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+</style>
