@@ -29,7 +29,7 @@ const { title, link, description, tags } = Astro.props;
   .post-link {
     text-decoration-line: underline;
 
-    &:hover {
+    &:is(:hover, :focus-visible) {
       text-decoration-line: none;
     }
   }

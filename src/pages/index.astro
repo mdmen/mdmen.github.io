@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import Post from "@/components/Post.astro";
+import { Content as About } from "@/content/about.md";
 
 const [projects, experiments] = await Promise.all([
   getCollection("projects"),
@@ -12,12 +13,7 @@ const [projects, experiments] = await Promise.all([
 
 <BaseLayout title="Personal website">
   <SectionLayout title="Hi there! I'm Dmitry" as="h1">
-    <p>
-      A Frontend Developer with over four years of hands-on experience,
-      passionate about client-side development and the broader JavaScript
-      ecosystem. I am actively seeking opportunities to further enhance my
-      skills and expand my knowledge in this dynamic field.
-    </p>
+    <About />
   </SectionLayout>
 
   <hr class="divider section-divider" />

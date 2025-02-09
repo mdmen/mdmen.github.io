@@ -1,0 +1,1 @@
+A Frontend Developer with over four years of hands-on experience, passionate about client-side development and the broader JavaScript ecosystem. I am actively seeking opportunities to further enhance my skills and expand my knowledge in this dynamic field.

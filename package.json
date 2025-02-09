@@ -17,7 +17,10 @@
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.3",
-    "astro": "^5.1.10"
+    "@resvg/resvg-js": "^2.6.2",
+    "astro": "^5.1.10",
+    "satori": "^0.12.1",
+    "satori-html": "^0.3.2"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
