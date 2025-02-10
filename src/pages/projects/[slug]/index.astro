@@ -2,6 +2,7 @@
 import type { InferGetStaticPropsType } from "astro";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
+import Tags from "@/components/Tags.astro";
 
 export const getStaticPaths = async () => {
   const entries = await getCollection("projects");
@@ -15,12 +16,19 @@ export const getStaticPaths = async () => {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { entry } = Astro.props;
-const { title, description, ogImage } = entry.data;
+const { title, description, ogImage, tags } = entry.data;
 const { Content } = await render(entry);
 const ogImagePath = ogImage ? ogImage : `${Astro.url.pathname}og-image.png`;
 ---
 
 <BaseLayout title={title} description={description} ogImage={ogImagePath}>
   <h1>{title}</h1>
+  {tags && <Tags tags={tags} class="post-detail-tags" />}
   <Content />
 </BaseLayout>
+
+<style>
+  .post-detail-tags {
+    margin-bottom: var(--spacing-6);
+  }
+</style>

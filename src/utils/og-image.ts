@@ -1,7 +1,7 @@
 import { readFile } from "node:fs/promises";
+import { Resvg } from "@resvg/resvg-js";
 import satori, { type SatoriOptions } from "satori";
 import { html } from "satori-html";
-import { Resvg } from "@resvg/resvg-js";
 import { type OgImageicons, getSvgIcon } from "./icons";
 
 interface Post {
@@ -37,7 +37,6 @@ function composeOgImageMarkup({ title, description, logoText, icon }: Post) {
       <div style="
         display: flex;
         font-size: 22px;
-        font-weight: 500;
         padding: 20px 20px 0 20px;
         text-align: center;
         text-wrap: pretty;
@@ -66,7 +65,6 @@ function composeOgImageMarkup({ title, description, logoText, icon }: Post) {
         align-items: center;
         justify-content: center;
         font-size: 46px;
-        font-weight: 600;
         text-align: center;
         overflow-wrap: break-word;
         text-wrap: balance;
@@ -86,8 +84,6 @@ export async function generateOgImage(post: Post) {
       {
         name: "Inter",
         data: await readFile("./src/assets/fonts/Inter-SemiBold.ttf"),
-        weight: 600,
-        style: "normal",
       },
     ],
   };

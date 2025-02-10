@@ -4,9 +4,9 @@ import "@/styles/base.css";
 
 import { ClientRouter } from "astro:transitions";
 import BaseMeta from "@/components/BaseMeta.astro";
-import ThemeSync from "@/components/ThemeSync.astro";
-import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import ThemeSync from "@/components/ThemeSync.astro";
 
 interface Props {
   title: string;
@@ -40,3 +40,22 @@ const { title, description, ogImage } = Astro.props;
     </div>
   </body>
 </html>
+
+<style>
+  .container {
+    width: 50rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: var(--spacing-4);
+  }
+
+  .content :global(p) {
+    margin: var(--spacing-3) 0;
+  }
+
+  .content :global(img) {
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+  }
+</style>
