@@ -6,17 +6,44 @@ import { type OgImageicons, getSvgIcon } from "./icons";
 
 interface Post {
   title: string;
-  description: string;
-  category: string;
+  logoText?: string;
+  description?: string;
   icon?: OgImageicons;
 }
 
-function composeOgImageMarkup({ title, description, category, icon }: Post) {
-  const svgIcon = icon
-    ? getSvgIcon(icon, {
-        size: 42,
-        color: "#222",
-      })
+function composeOgImageMarkup({ title, description, logoText, icon }: Post) {
+  const logoMarkup = logoText
+    ? `<div style="
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 28px;
+        font-weight: 600;
+      ">
+      ${
+        icon
+          ? getSvgIcon(icon, {
+              size: 42,
+              color: "#222",
+            })
+          : ""
+      }
+        <span>${logoText}</span>
+      </div>`
+    : "";
+
+  const descriptionMarkup = description
+    ? `
+      <div style="
+        display: flex;
+        font-size: 22px;
+        font-weight: 500;
+        padding: 20px 20px 0 20px;
+        text-align: center;
+        text-wrap: pretty;
+        overflow-wrap: break-word;
+      ">${description}</div>
+  `
     : "";
 
   return html(`
@@ -31,16 +58,7 @@ function composeOgImageMarkup({ title, description, category, icon }: Post) {
       padding: 20px;
       box-sizing: border-box;
     ">
-      <div style="
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 28px;
-        font-weight: 600;
-      ">
-        ${svgIcon}
-        <span>${category}</span>
-      </div>
+      ${logoMarkup}
       <div style="
         flex: 1;
         display: flex;
@@ -54,15 +72,7 @@ function composeOgImageMarkup({ title, description, category, icon }: Post) {
         text-wrap: balance;
       ">
         <span>${title}</span>
-        <div style="
-          display: flex;
-          font-size: 22px;
-          font-weight: 500;
-          padding: 20px 20px 0 20px;
-          text-align: center;
-          text-wrap: pretty;
-          overflow-wrap: break-word;
-        ">${description}</div>
+        ${descriptionMarkup}
       </div>
     </div>
   `);

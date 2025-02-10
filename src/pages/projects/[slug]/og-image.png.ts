@@ -22,7 +22,7 @@ export async function GET({ props }: APIContext) {
   const image = await generateOgImage({
     title,
     description,
-    category: "Projects",
+    logoText: "Projects",
     icon: "atom",
   });
 
