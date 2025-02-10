@@ -7,6 +7,4 @@ tags:
   - PixiJS
 ---
 
-# Content
-
 project page content
