@@ -90,7 +90,6 @@ export async function generateOgImage(post: Post) {
 
   const markup = composeOgImageMarkup(post);
 
-  // @ts-ignore
   const svg = await satori(markup, satoriOptions);
 
   return new Resvg(svg).render().asPng();

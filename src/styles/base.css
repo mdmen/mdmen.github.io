@@ -11,9 +11,7 @@
 }
 
 :root {
-  --font-family: InterVariable;
-  --font-family-fallback: system-ui, "Segoe UI", Roboto, Helvetica, Arial,
-    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  color-scheme: light dark;
 
   --spacing-unit: 0.125rem;
   --spacing-0: calc(var(--spacing-unit) * 1);
@@ -35,35 +33,23 @@
   --font-size-2xl: calc(var(--font-size-unit) * 12);
   --font-size-3xl: calc(var(--font-size-unit) * 14);
   --font-size-4xl: calc(var(--font-size-unit) * 16);
-
-  --size-icons-base: 1.75rem;
 }
 
-:root,
 :root[data-theme="light"] {
   color-scheme: light;
-
-  --color-background: #fff;
-  --color-text: #1a1a1a;
-  --color-icons: #768694;
-  --color-icons-hover: #4c565f;
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
-
-  --color-background: #21252b;
-  --color-text: #fff;
-  --color-icons: #fff;
 }
 
 body {
-  font-family: var(--font-family), var(--font-family-fallback);
+  font-family: InterVariable, system-ui, sans-serif;
   font-optical-sizing: auto;
   font-size: var(--font-size-lg);
   text-rendering: optimizeLegibility;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: light-dark(#fff, #21252b);
+  color: light-dark(#1a1a1a, #fff);
   transition: background-color 0.5s;
   min-height: 100vh;
 }
@@ -72,10 +58,6 @@ a,
 button {
   cursor: pointer;
   outline-offset: var(--spacing-1);
-
-  &:is(:hover, :focus-visible) .icon {
-    color: var(--color-icons-hover);
-  }
 }
 
 a {
@@ -110,14 +92,16 @@ h3 {
   margin-bottom: var(--spacing-2);
 }
 
-.visually-hidden {
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
+.sr-only {
+  position: absolute;
   width: 1px;
   height: 1px;
+  padding: 0;
+  margin: -1px;
   overflow: hidden;
-  position: absolute;
+  clip: rect(0, 0, 0, 0);
   white-space: nowrap;
+  border-width: 0;
 }
 
 .pixelated {
@@ -126,14 +110,4 @@ h3 {
 
 .w-full {
   width: 100%;
-}
-
-.divider {
-  border: none;
-  border-top: 2px dashed #ccc;
-  margin: 0;
-}
-
-.section-divider {
-  margin: var(--spacing-7) 0;
 }

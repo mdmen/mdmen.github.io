@@ -20,7 +20,7 @@ const { items } = Astro.props;
     items.map(({ link, name, icon }) => (
       <a href={link} class="social-links-item" target="_blank">
         <Icon icon={icon} class="social-links-icon" />
-        <span class="visually-hidden">{name}</span>
+        <span class="sr-only">{name}</span>
       </a>
     ))
   }

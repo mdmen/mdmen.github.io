@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import Post from "@/components/Post.astro";
+import Divider from "@/components/Divider.astro";
 import { Content as About } from "@/content/about.md";
 
 const [projects, experiments] = await Promise.all([
@@ -16,7 +17,7 @@ const [projects, experiments] = await Promise.all([
     <About />
   </SectionLayout>
 
-  <hr class="divider section-divider" />
+  <Divider />
 
   <SectionLayout title="Projects" as="h2" icon="atom">
     {
@@ -31,7 +32,7 @@ const [projects, experiments] = await Promise.all([
     }
   </SectionLayout>
 
-  <hr class="divider section-divider" />
+  <Divider />
 
   <SectionLayout title="Experiments" as="h2" icon="flask">
     {
