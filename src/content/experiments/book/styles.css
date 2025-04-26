@@ -11,13 +11,26 @@
 }
 
 .wrapper {
+  --image-background: url(./images/bg.webp);
+  --image-page-1: url(./images/river.webp);
+  --image-page-2: url(./images/hill.webp);
+  --image-page-3: url(./images/gendalf.webp);
+  --image-page-4: url(./images/smaug.webp);
+  --image-cover-front: url(./images/cover-front.webp);
+  --image-cover-back: url(./images/cover-back.webp);
+  --image-cover-middle: url(./images/cover-middle.webp);
+  --image-inner-cover: url(./images/inner-cover.webp);
+  --image-page-left: url(./images/page-left.webp);
+  --image-page-right: url(./images/page-right.webp);
+  --image-frame: url(./images/frame.webp);
+
   position: fixed;
   width: 100vw;
   height: 100vh;
   height: 100dvh;
   display: grid;
   place-items: center;
-  background-image: url(./images/bg.webp);
+  background-image: var(--image-background);
   background-size: cover;
   perspective: 1500px;
   animation: wrapper-transform ease-in-out forwards;
@@ -54,8 +67,7 @@
   width: 1px;
   height: 1px;
   position: absolute;
-  background-image: url(./images/gendalf.webp), url(./images/smaug.webp), url(./images/river.webp),
-    url(./images/hill.webp);
+  background-image: var(--image-page-1), var(--image-page-2), var(--image-page-3), var(--image-page-4);
 }
 
 @keyframes bg-darkness {
@@ -169,7 +181,7 @@
 }
 
 .book-cover-front::before {
-  background-image: var(--book-cover-glare), url(./images/cover-front.webp);
+  background-image: var(--book-cover-glare), var(--image-cover-front);
   background-size: 200% 100%, 100% 100%;
   background-repeat: no-repeat;
   animation: front-cover-glare linear forwards;
@@ -193,7 +205,7 @@
 }
 
 .book-cover-back::before {
-  background-image: var(--book-cover-glare), url(./images/cover-back.webp);
+  background-image: var(--book-cover-glare), var(--image-cover-back);
   background-size: 200% 100%, 100% 100%;
   background-repeat: no-repeat;
   rotate: z 180deg;
@@ -224,7 +236,7 @@
 }
 
 .book-cover-inner-front {
-  background-image: url(./images/inner-cover.webp);
+  background-image: var(--image-inner-cover);
   box-shadow: inset 0 0 15px 2px rgb(0, 0, 0, 0.3);
   filter: contrast(130%);
 }
@@ -236,7 +248,7 @@
 }
 
 .book-cover-middle::before {
-  background-image: url(./images/cover-middle.webp);
+  background-image: var(--image-cover-middle);
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -291,7 +303,7 @@
 
 .book-page-turned {
   visibility: hidden;
-  background-image: url(./images/page-left.webp);
+  background-image: var(--image-page-left);
   background-size: cover;
   filter: contrast(75%);
   animation: turned-page-visibility linear;
@@ -310,7 +322,7 @@
   place-content: center;
   top: var(--book-border-width);
   translate: 0 0 calc(var(--book-depth) / 2);
-  background-image: url(./images/page-right.webp);
+  background-image: var(--image-page-right);
   background-size: cover;
 }
 
@@ -373,20 +385,20 @@
 @keyframes page-stacked-content {
   0%,
   40% {
-    --page-content-image: url(./images/hill.webp);
+    --page-content-image: var(--image-page-2);
     --page-content-sepia: 0%;
     --page-content-brightness: 100%;
   }
 
   50% {
-    --page-content-image: url(./images/gendalf.webp);
+    --page-content-image: var(--image-page-3);
     --page-content-sepia: 80%;
     --page-content-brightness: 150%;
   }
 
   84%,
   100% {
-    --page-content-image: url(./images/smaug.webp);
+    --page-content-image: var(--image-page-4);
     --page-content-sepia: 0%;
     --page-content-brightness: 100%;
   }
@@ -396,7 +408,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-image: url(./images/frame.webp) 30 / 30px;
+  border-image: var(--image-frame) 30 / 30px;
   border-image-outset: 3px;
   filter: sepia(25%);
 }
@@ -451,7 +463,7 @@
 
   display: grid;
   place-content: center;
-  background-image: url(./images/page-right.webp);
+  background-image: var(--image-page-right);
 }
 
 .segment-side-back {
@@ -460,7 +472,7 @@
   position: absolute;
   width: calc(var(--book-width) - var(--book-border-width));
   height: 100%;
-  background-image: url(./images/page-left.webp);
+  background-image: var(--image-page-left);
   rotate: y -180deg;
 }
 
@@ -480,19 +492,19 @@
 @keyframes page-segment-content {
   0%,
   40% {
-    --page-segment-image: url(./images/river.webp);
+    --page-segment-image: var(--image-page-1);
     --page-segment-sepia: 0%;
   }
 
   43% {
-    --page-segment-image: url(./images/hill.webp);
+    --page-segment-image: var(--image-page-2);
     --page-segment-sepia: 0%;
     --page-segment-brightness: 100%;
   }
 
   84%,
   100% {
-    --page-segment-image: url(./images/gendalf.webp);
+    --page-segment-image: var(--image-page-3);
     --page-segment-sepia: 80%;
     --page-segment-brightness: 150%;
   }
@@ -502,7 +514,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  border-image: url(./images/frame.webp) 30 / 30px;
+  border-image: var(--image-frame) 30 / 30px;
   border-image-outset: 3px;
   filter: sepia(25%);
 }
