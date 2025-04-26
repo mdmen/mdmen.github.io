@@ -1,9 +1,9 @@
-import { generateOgImage } from "@/utils/og-image";
+import { generateOgImage } from "@/utils/open-graph";
 
 export async function GET() {
   const image = await generateOgImage({
     title: "Dmitry's personal website",
-    icon: "atom",
+    logoIcon: "atom",
     logoText: "mdmen.github.io",
   });
 

@@ -6,13 +6,10 @@ import Post from "@/components/Post.astro";
 import Divider from "@/components/Divider.astro";
 import { Content as About } from "@/content/about.md";
 
-const [projects, experiments] = await Promise.all([
-  getCollection("projects"),
-  getCollection("experiments"),
-]);
+const [projects, experiments] = await Promise.all([getCollection("projects"), getCollection("experiments")]);
 ---
 
-<BaseLayout title="Personal website">
+<BaseLayout>
   <SectionLayout title="Hi there! I'm Dmitry" as="h1">
     <About />
   </SectionLayout>

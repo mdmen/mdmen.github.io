@@ -3,19 +3,15 @@ import Icon from "./Icon.astro";
 ---
 
 <button class="theme-toggle" type="button">
+  <span class="sr-only">Toggle theme</span>
   <Icon icon="sun" class="theme-toggle-icon light" />
   <Icon icon="moon" class="theme-toggle-icon dark" />
-  <span class="sr-only">Toggle theme</span>
 </button>
 
-<style is:global>
-  .theme-toggle-icon {
+<style>
+  :global([data-theme="light"]) .theme-toggle-icon.dark,
+  :global([data-theme="dark"]) .theme-toggle-icon.light {
     display: none;
-  }
-
-  [data-theme="light"] .theme-toggle-icon.light,
-  [data-theme="dark"] .theme-toggle-icon.dark {
-    display: block;
   }
 </style>
 

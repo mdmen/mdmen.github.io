@@ -1,6 +1,7 @@
 ---
 import type { Icons } from "@/types/common";
 import Tags from "./Tags.astro";
+import Info from "./Info.astro";
 
 export interface Props {
   title: string;
@@ -17,7 +18,13 @@ const { title, link, description, tags } = Astro.props;
   <h3 class="post-title">
     <a class="post-link" href={link} data-astro-prefetch>{title}</a>
   </h3>
-  {tags && <Tags tags={tags} class="post-tags" />}
+  {
+    !!tags?.length && (
+      <Info class="post-tags" icon="tags">
+        <Tags tags={tags} />
+      </Info>
+    )
+  }
   {description && <p class="post-description">{description}</p>}
 </article>
 

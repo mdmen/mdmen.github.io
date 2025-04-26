@@ -1,10 +1,17 @@
 ---
 slug: book
 title: "Scroll-driven 3D CSS book animation"
-description: "test"
+description: "An example of using CSS scroll-driven animations with CSS custom properties"
 tags:
   - CSS
   - 3D
 ---
 
-content
+import "./styles.css";
+
+import BookLayout from './components/BookLayout.astro';
+import Book from "./components/Book.astro";
+
+<BookLayout>
+  <Book pageSegments={8} />
+</BookLayout>

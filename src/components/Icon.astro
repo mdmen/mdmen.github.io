@@ -19,23 +19,31 @@ const { class: className, icon, ...rest } = Astro.props;
 
 <style>
   .icon {
-    --size-icons: 1.75rem;
+    --icon-size: 1.75rem;
+    --lightness-adjustment: 0;
 
-    width: var(--size-icons);
-    height: var(--size-icons);
-    min-width: var(--size-icons);
-    color: light-dark(#768694, #abb2bf);
+    width: var(--icon-size);
+    height: var(--icon-size);
+    min-width: var(--icon-size);
+    color: light-dark(
+      oklch(
+        from var(--color-slate-500) calc(l - var(--lightness-adjustment)) c h
+      ),
+      oklch(
+        from var(--color-slate-400) calc(l + var(--lightness-adjustment)) c h
+      )
+    );
   }
 
   :global(a, button) {
     &:is(:hover, :focus-visible) .icon {
-      color: light-dark(#4c565f, #fff);
+      --lightness-adjustment: 0.15;
     }
   }
 
   .lucide-icon {
-    stroke: currentColor;
     fill: none;
+    stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;

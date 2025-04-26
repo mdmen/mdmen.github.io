@@ -1,0 +1,58 @@
+---
+import BookCredits from "./BookCredits.astro";
+import BookScrollNote from "./BookScrollNote.astro";
+---
+
+<main class="container">
+  <slot />
+
+  <div class="info">
+    <BookCredits />
+    <BookScrollNote />
+  </div>
+
+  <p class="unsupported">
+    ⚠️ Scroll-driven animations are <a
+      href="https://caniuse.com/mdn-css_properties_animation-timeline_scroll"
+      target="_blank"
+      title="Caniuse">not supported</a
+    >
+  </p>
+</main>
+
+<style>
+  :global(::-webkit-scrollbar) {
+    display: none;
+  }
+
+  .container {
+    min-height: 800vh;
+    background-color: #151d0a;
+  }
+
+  .info {
+    font-family:
+      Iowan Old Style,
+      Apple Garamond,
+      Times New Roman,
+      Droid Serif,
+      Times,
+      Source Serif Pro,
+      serif;
+    animation: info-scroll-fade linear forwards;
+    animation-timeline: scroll(root);
+    animation-range: 0% 4%;
+  }
+
+  @keyframes info-scroll-fade {
+    to {
+      opacity: 0;
+    }
+  }
+
+  @supports not ((animation-timeline: scroll()) and (animation-range: 0% 100%)) {
+    .unsupported {
+      display: initial;
+    }
+  }
+</style>

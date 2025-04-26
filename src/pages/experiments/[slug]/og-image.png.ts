@@ -1,6 +1,6 @@
 import type { APIContext } from "astro";
 import { getCollection } from "astro:content";
-import { generateOgImage } from "@/utils/og-image";
+import { generateOgImage } from "@/utils/open-graph";
 
 export const getStaticPaths = async () => {
   const entries = await getCollection("experiments");
@@ -23,7 +23,7 @@ export async function GET({ props }: APIContext) {
     title,
     description,
     logoText: "Experiments",
-    icon: "flask",
+    logoIcon: "flask",
   });
 
   return new Response(image);

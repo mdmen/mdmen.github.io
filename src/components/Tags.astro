@@ -1,36 +1,19 @@
 ---
-import Icon from "./Icon.astro";
-
 export interface Props {
   tags: string[];
-  class?: string;
 }
 
-const { tags, class: className, ...rest } = Astro.props;
+const { tags } = Astro.props;
 ---
 
-{
-  tags.length > 0 && (
-    <div class:list={["tags", className]} {...rest}>
-      <Icon icon="tags" class="tags-icon" />
-      <ul class="tags-list">
-        {tags.map((tag) => (
-          <li class="tags-item">{tag}</li>
-        ))}
-      </ul>
-    </div>
-  )
-}
+<ul class="tags">
+  {tags.map((tag) => <li class="tags-item">{tag}</li>)}
+</ul>
 
 <style>
   .tags {
     display: flex;
-    align-items: center;
-    gap: var(--spacing-2);
-  }
-
-  .tags-list {
-    display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing-1);
   }
 
@@ -38,8 +21,9 @@ const { tags, class: className, ...rest } = Astro.props;
     font-size: var(--font-size-sm);
     font-weight: 600;
     padding: 0 var(--spacing-1);
-    background-color: light-dark(#aeaeae, #42454a);
-    color: #fff;
+    background-color: light-dark(var(--color-gray-400), var(--color-gray-600));
+    color: light-dark(var(--color-white), var(--color-gray-300));
     border-radius: 0.4em;
+    transition: var(--transition-theme);
   }
 </style>

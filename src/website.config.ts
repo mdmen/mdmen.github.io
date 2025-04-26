@@ -1,11 +1,12 @@
-import type { SocialLink } from "@/types/common";
+import type { Icons } from "@/types/common";
 
 const author = "Dmitry Menovshchikov";
 
 export const websiteConfig = {
   author,
-  titleSuffix: ` 🚀 ${author}`,
-  defaultDescription: `Dmitry's personal website, projects and experiments`,
+  titleAppendix: ` 🛰️ ${author}`,
+  defaultTitle: "Personal website",
+  defaultDescription: "Dmitry's personal website, projects and experiments",
 };
 
 export const navigationLinks = [
@@ -23,12 +24,18 @@ export const navigationLinks = [
   },
 ];
 
+interface SocialLink {
+  name: string;
+  link: string;
+  icon: Icons;
+}
+
 export const socialLinks: SocialLink[] = [
-  {
-    name: "Email",
-    link: "mailto:test@email.com",
-    icon: "email",
-  },
+  // {
+  //   name: "Email",
+  //   link: "mailto:test@email.com",
+  //   icon: "email",
+  // },
   {
     name: "Codepen",
     link: "https://codepen.io/mdmen",

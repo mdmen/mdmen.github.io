@@ -1,35 +1,30 @@
 ---
-import "../styles/index.scss";
+import PageSegments from "./BookPageSegments.astro";
 
-import PageSegments from "./PageSegments.astro";
+export interface Props {
+  pageSegments?: number;
+}
 
-const segments = 8;
+const { pageSegments = 8 } = Astro.props;
 ---
 
-<div class="container">
-  <div class="scene">
-    <div class="shelf">
-      <div class="shelf-side shelf-side-front"></div>
-      <div class="shelf-side shelf-side-top"></div>
-    </div>
-    <div class="book" style={`--_segments-count: ${segments}`}>
-      <div class="book-cover book-cover-wide book-cover-front">
-        <div class="book-cover-inner book-cover-inner-front">
-          <div class="book-page book-page-turned"></div>
-        </div>
-      </div>
-      <div class="book-cover book-cover-wide book-cover-back">
-        <div class="book-cover-inner"></div>
-      </div>
-      <div class="book-cover book-cover-middle"></div>
-      <div class="book-side book-side-paper book-side-right"></div>
-      <div class="book-side book-side-paper book-side-top"></div>
-      <div class="book-side book-side-paper book-side-bottom"></div>
-      <div class="book-page book-page-stacked">
-        <div class="book-page-content"></div>
-        <PageSegments total={segments} />
+<div class="wrapper">
+  <div class="book" style={`--segments-count: ${pageSegments}`}>
+    <div class="book-cover book-cover-wide book-cover-front">
+      <div class="book-cover-inner book-cover-inner-front">
+        <div class="book-page book-page-turned"></div>
       </div>
     </div>
-    <p class="unsupported">⚠️ Scroll-driven animations are not supported</p>
+    <div class="book-cover book-cover-wide book-cover-back">
+      <div class="book-cover-inner"></div>
+    </div>
+    <div class="book-cover book-cover-middle"></div>
+    <div class="book-side book-side-right"></div>
+    <div class="book-side book-side-top"></div>
+    <div class="book-side book-side-bottom"></div>
+    <div class="book-page book-page-stacked">
+      <div class="book-page-inner"></div>
+      <PageSegments total={pageSegments} />
+    </div>
   </div>
 </div>

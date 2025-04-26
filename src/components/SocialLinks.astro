@@ -15,19 +15,19 @@ export interface Props {
 const { items } = Astro.props;
 ---
 
-<div class="social-links">
+<div class="socials">
   {
     items.map(({ link, name, icon }) => (
-      <a href={link} class="social-links-item" target="_blank">
-        <Icon icon={icon} class="social-links-icon" />
+      <a href={link} target="_blank">
         <span class="sr-only">{name}</span>
+        <Icon icon={icon} />
       </a>
     ))
   }
 </div>
 
 <style>
-  .social-links {
+  .socials {
     display: flex;
     gap: var(--spacing-4);
   }

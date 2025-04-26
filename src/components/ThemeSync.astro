@@ -7,26 +7,28 @@
         : "light";
   }
 
-  function setTheme(theme) {
-    document.documentElement.dataset.theme = theme;
-  }
-
-  function syncTheme() {
-    if (getCurrentTheme() !== "light") {
-      setTheme("dark");
+  (() => {
+    function setTheme(theme) {
+      document.documentElement.dataset.theme = theme;
     }
-  }
 
-  document.addEventListener("DOMContentLoaded", () => {
-    window
-      .matchMedia("(prefers-color-scheme: dark)")
-      .addEventListener("change", (event) => {
-        localStorage.removeItem("theme");
-        setTheme(event.matches ? "dark" : "light");
-      });
-  });
+    function syncTheme() {
+      if (getCurrentTheme() !== "light") {
+        setTheme("dark");
+      }
+    }
 
-  document.addEventListener("astro:after-swap", syncTheme);
+    document.addEventListener("DOMContentLoaded", () => {
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          localStorage.removeItem("theme");
+          setTheme(event.matches ? "dark" : "light");
+        });
+    });
 
-  syncTheme();
+    document.addEventListener("astro:after-swap", syncTheme);
+
+    syncTheme();
+  })();
 </script>

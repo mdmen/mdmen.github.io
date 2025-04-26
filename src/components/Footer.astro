@@ -7,8 +7,9 @@ const { author } = websiteConfig;
 ---
 
 <footer class="footer">
-  <p class="copyright">
-    Copyright &copy; <time datetime={year}>{year}</time> 🚀 {author}
+  <p class="copy">
+    Copyright &copy; <time datetime={year}>{year}</time>
+    <span class="copy-author">🚀 {author}</span>
   </p>
   <SocialLinks items={socialLinks} />
 </footer>
@@ -19,5 +20,14 @@ const { author } = websiteConfig;
     justify-content: space-between;
     align-items: center;
     margin-top: var(--spacing-9);
+  }
+
+  .copy {
+    margin: 0;
+  }
+
+  .copy-author {
+    display: inline-block;
+    min-width: fit-content;
   }
 </style>

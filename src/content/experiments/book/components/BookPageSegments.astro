@@ -1,0 +1,16 @@
+---
+interface Props {
+  total: number;
+  index?: number;
+}
+
+const { index = 1, total } = Astro.props;
+---
+
+<div class="segment" style={`--segment-number: ${index}`}>
+  <div class="segment-side segment-side-front">
+    <div class="segment-inner"></div>
+  </div>
+  <div class="segment-side segment-side-back"></div>
+  {index < total && <Astro.self index={index + 1} total={total} />}
+</div>

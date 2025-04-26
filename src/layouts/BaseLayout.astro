@@ -3,13 +3,13 @@ import "@/styles/reset.css";
 import "@/styles/base.css";
 
 import { ClientRouter } from "astro:transitions";
-import BaseMeta from "@/components/BaseMeta.astro";
+import Meta from "@/components/Meta.astro";
 import Footer from "@/components/Footer.astro";
 import Header from "@/components/Header.astro";
 import ThemeSync from "@/components/ThemeSync.astro";
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
   ogImage?: string;
 }
@@ -19,7 +19,7 @@ const { title, description, ogImage } = Astro.props;
 
 <html lang="en" data-theme="light">
   <head>
-    <BaseMeta title={title} description={description} ogImage={ogImage} />
+    <Meta title={title} description={description} ogImage={ogImage} />
     <ClientRouter />
     <ThemeSync />
     <link
@@ -33,7 +33,7 @@ const { title, description, ogImage } = Astro.props;
   <body>
     <div class="container">
       <Header />
-      <main class="content" transition:animate="fade">
+      <main transition:animate="fade">
         <slot />
       </main>
       <Footer />
@@ -46,15 +46,5 @@ const { title, description, ogImage } = Astro.props;
     width: min(50rem, 100%);
     margin: 0 auto;
     padding: var(--spacing-4);
-  }
-
-  .content :global(p) {
-    margin: var(--spacing-3) 0;
-  }
-
-  .content :global(img) {
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
   }
 </style>
