@@ -29,6 +29,10 @@ const { title, link, description, tags } = Astro.props;
 </article>
 
 <style>
+  .post {
+    margin-bottom: var(--spacing-3);
+  }
+
   .post-title {
     margin-bottom: var(--spacing-1);
   }
@@ -43,5 +47,9 @@ const { title, link, description, tags } = Astro.props;
 
   .post-tags {
     margin: var(--spacing-1) 0;
+  }
+
+  .post-description {
+    margin-top: 0;
   }
 </style>

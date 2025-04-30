@@ -1,0 +1,68 @@
+---
+export interface Props {
+  items: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<fieldset class="controls">
+  <legend class="controls-caption">Chosen character</legend>
+  <div class="controls-fields">
+    {
+      items.map((item, index) => (
+        <label class="controls-item">
+          <input data-character={item} class="sr-only" type="radio" name="character" checked={index === 0} />
+          <span>{item}</span>
+        </label>
+      ))
+    }
+  </div>
+</fieldset>
+
+<style>
+  .controls {
+    border: none;
+  }
+
+  .controls-caption {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .controls-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .controls-fields:has(:focus-visible) {
+    outline: 2px solid;
+  }
+
+  .controls-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+  }
+
+  .controls-item:is(:hover, :has(:checked)) {
+    font-weight: 600;
+  }
+
+  .controls-item span::first-letter {
+    text-transform: uppercase;
+  }
+
+  .controls-item::before {
+    content: "👉";
+    font-size: 1.2em;
+    visibility: hidden;
+    flex: 0 0 1.5rem;
+  }
+
+  .controls-item:has(:checked)::before {
+    visibility: visible;
+  }
+</style>

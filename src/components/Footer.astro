@@ -1,6 +1,6 @@
 ---
 import { websiteConfig, socialLinks } from "@/website.config";
-import SocialLinks from "./SocialLinks.astro";
+import Socials from "./Socials.astro";
 
 const year = new Date().getFullYear().toString();
 const { author } = websiteConfig;
@@ -11,7 +11,7 @@ const { author } = websiteConfig;
     Copyright &copy; <time datetime={year}>{year}</time>
     <span class="copy-author">🚀 {author}</span>
   </p>
-  <SocialLinks items={socialLinks} />
+  <Socials items={socialLinks} />
 </footer>
 
 <style>

@@ -1,0 +1,37 @@
+---
+import CharacterBodyPart from "./CharacterBodyPart.astro";
+import CharacterInfo from "./CharacterInfo.astro";
+
+const gridColumns = 12;
+const gridRows = 9;
+const gridItems = new Array(gridColumns * gridRows).fill(null);
+---
+
+<div class="container">
+  <div class="ambient"></div>
+  <CharacterInfo />
+  <div class="character-wrapper">
+    <div class="character">
+      <div class="body">
+        <CharacterBodyPart name="torso" />
+        <CharacterBodyPart name="arm right-arm" />
+        <CharacterBodyPart name="arm left-arm" />
+        <div class="pelvis">
+          <CharacterBodyPart name="leg right-leg" />
+          <CharacterBodyPart name="leg left-leg" />
+        </div>
+        <CharacterBodyPart name="head" />
+      </div>
+    </div>
+  </div>
+  <div class="grid">
+    {
+      gridItems.map(() => (
+        <label class="cell">
+          <input type="radio" name="c" class="sr-only" />
+        </label>
+      ))
+    }
+  </div>
+  <div class="fly"></div>
+</div>

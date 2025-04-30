@@ -1,0 +1,47 @@
+---
+import CharacterControls from "./CharacterControls.astro";
+---
+
+<details class="info" open>
+  <summary class="info-caption">Info</summary>
+  <p class="prompt info-item">Move the cursor or click/tap somewhere</p>
+  <div class="info-item">
+    <CharacterControls items={["woman", "man", "adventurer", "orc", "soldier", "robot"]} />
+  </div>
+  <p class="info-item">
+    Used <a href="https://kenney.nl/assets/blocky-characters" target="_blank">Kenney's texture pack</a>
+  </p>
+</details>
+
+<style>
+  .info {
+    font-size: 1.1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgb(255 255 255 / 0.6);
+  }
+
+  .info a {
+    color: currentColor;
+  }
+
+  .info[open] {
+    padding: 0.5rem 1rem;
+  }
+
+  .info-caption {
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .info[open] .info-caption {
+    padding: 0;
+  }
+
+  .info-item {
+    margin-top: 0.75rem;
+  }
+</style>

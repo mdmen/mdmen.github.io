@@ -103,26 +103,27 @@ a {
   }
 }
 
-h1 {
-  font-size: var(--font-size-3xl);
+h1,
+h2,
+h3 {
   font-weight: 600;
   margin-bottom: var(--spacing-3);
 }
 
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
 h2 {
   font-size: var(--font-size-2xl);
-  font-weight: 600;
-  margin-bottom: var(--spacing-2);
 }
 
 h3 {
   font-size: var(--font-size-xl);
-  font-weight: 600;
-  margin-bottom: var(--spacing-2);
 }
 
 p {
-  margin: var(--spacing-3) 0;
+  margin: var(--spacing-2) 0;
 }
 
 img {

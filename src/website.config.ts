@@ -31,11 +31,6 @@ interface SocialLink {
 }
 
 export const socialLinks: SocialLink[] = [
-  // {
-  //   name: "Email",
-  //   link: "mailto:test@email.com",
-  //   icon: "email",
-  // },
   {
     name: "Codepen",
     link: "https://codepen.io/mdmen",

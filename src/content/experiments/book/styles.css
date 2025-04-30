@@ -67,7 +67,14 @@
   width: 1px;
   height: 1px;
   position: absolute;
-  background-image: var(--image-page-1), var(--image-page-2), var(--image-page-3), var(--image-page-4);
+  animation: preload-images 0.1s;
+  animation-delay: 1s;
+}
+
+@keyframes preload-images {
+  to {
+    background-image: var(--image-page-1), var(--image-page-2), var(--image-page-3), var(--image-page-4);
+  }
 }
 
 @keyframes bg-darkness {
@@ -81,9 +88,9 @@
 }
 
 .book {
-  --book-width: 300px;
-  --book-height: 418px;
-  --book-depth: 54px;
+  --book-width: clamp(240px, 201px + 9vw, 330px);
+  --book-height: clamp(334px, 280px + 12.5vw, 460px);
+  --book-depth: clamp(43px, 36px + 1.6vw, 60px);
   --book-border-width: 5px;
   --inner-cover-color: #450a00;
   --page-color: #d6bb87;
@@ -256,31 +263,31 @@
 .book-side {
   position: absolute;
   background-color: var(--page-color);
+  background-image: linear-gradient(var(--book-side-bg-angle), rgb(255 255 255 / 0.06) 50%, transparent 50%),
+    linear-gradient(var(--book-side-bg-angle), rgb(255 255 255 / 0.12) 50%, transparent 50%),
+    linear-gradient(var(--book-side-bg-angle), transparent 50%, rgb(255 255 255 / 0.16) 50%),
+    linear-gradient(var(--book-side-bg-angle), transparent 50%, rgb(255 255 255 / 0.18) 50%);
 }
 
 .book-side-right {
+  --book-side-bg-angle: 90deg;
+
   width: var(--book-depth);
   height: calc(var(--book-height) - 10px);
   left: calc(var(--book-depth) / -2);
   top: var(--book-border-width);
   rotate: y 90deg;
   translate: calc(var(--book-width) - var(--book-border-width)) 0 0;
-  background-image: linear-gradient(90deg, rgb(255 255 255 / 0.07) 50%, transparent 50%),
-    linear-gradient(90deg, rgb(255 255 255 / 0.13) 50%, transparent 50%),
-    linear-gradient(90deg, transparent 50%, rgb(255 255 255 / 0.17) 50%),
-    linear-gradient(90deg, transparent 50%, rgb(255 255 255 / 0.19) 50%);
   background-size: 4px, 14px, 30px, 60px;
 }
 
 .book-side-top,
 .book-side-bottom {
+  --book-side-bg-angle: 0deg;
+
   width: calc(var(--book-width) - var(--book-border-width));
   height: var(--book-depth);
   top: calc(var(--book-depth) / -2 + var(--book-border-width));
-  background-image: linear-gradient(0deg, rgb(255 255 255 / 0.07) 50%, transparent 50%),
-    linear-gradient(0deg, rgb(255 255 255 / 0.13) 50%, transparent 50%),
-    linear-gradient(0deg, transparent 50%, rgb(255 255 255 / 0.17) 50%),
-    linear-gradient(0deg, transparent 50%, rgb(255 255 255 / 0.19) 50%);
   background-size: 100% 4px, 100% 14px, 100% 30px, 100% 60px;
 }
 

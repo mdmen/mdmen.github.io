@@ -7,6 +7,7 @@ const buildSchema =
     z
       .object({
         title: z.string(),
+        datePublish: z.date().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
         ogImage: image()

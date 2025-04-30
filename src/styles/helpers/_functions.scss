@@ -1,0 +1,3 @@
+@function lerp($start, $end, $value) {
+  @return calc($start * (1 - $value) + $end * $value);
+}

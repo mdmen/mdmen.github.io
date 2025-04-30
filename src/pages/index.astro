@@ -1,12 +1,12 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import Post from "@/components/Post.astro";
 import Divider from "@/components/Divider.astro";
 import { Content as About } from "@/content/about.md";
+import { getSortedPosts } from "@/utils/posts";
 
-const [projects, experiments] = await Promise.all([getCollection("projects"), getCollection("experiments")]);
+const [projects, experiments] = await Promise.all([getSortedPosts("projects"), getSortedPosts("experiments")]);
 ---
 
 <BaseLayout>
@@ -19,12 +19,7 @@ const [projects, experiments] = await Promise.all([getCollection("projects"), ge
   <SectionLayout title="Projects" as="h2" icon="atom">
     {
       projects.map(({ id, data }) => (
-        <Post
-          title={data.title}
-          link={`/projects/${id}/`}
-          description={data.description}
-          tags={data.tags}
-        />
+        <Post title={data.title} link={`/projects/${id}/`} description={data.description} tags={data.tags} />
       ))
     }
   </SectionLayout>
@@ -34,12 +29,7 @@ const [projects, experiments] = await Promise.all([getCollection("projects"), ge
   <SectionLayout title="Experiments" as="h2" icon="flask">
     {
       experiments.map(({ id, data }) => (
-        <Post
-          title={data.title}
-          link={`/experiments/${id}/`}
-          description={data.description}
-          tags={data.tags}
-        />
+        <Post title={data.title} link={`/experiments/${id}/`} description={data.description} tags={data.tags} />
       ))
     }
   </SectionLayout>

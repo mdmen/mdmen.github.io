@@ -1,22 +1,17 @@
 ---
-import { getCollection } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionLayout from "@/layouts/SectionLayout.astro";
 import Post from "@/components/Post.astro";
+import { getSortedPosts } from "@/utils/posts";
 
-const experiments = await getCollection("experiments");
+const experiments = await getSortedPosts("experiments");
 ---
 
 <BaseLayout title="Projects">
   <SectionLayout title="Experiments" as="h1" icon="flask">
     {
       experiments.map(({ id, data }) => (
-        <Post
-          title={data.title}
-          link={`/experiments/${id}/`}
-          description={data.description}
-          tags={data.tags}
-        />
+        <Post title={data.title} link={`/experiments/${id}/`} description={data.description} tags={data.tags} />
       ))
     }
   </SectionLayout>
