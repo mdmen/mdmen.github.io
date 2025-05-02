@@ -1,11 +1,17 @@
 ---
 import CharacterBodyPart from "./CharacterBodyPart.astro";
 import CharacterInfo from "./CharacterInfo.astro";
+import womanTexture from "../images/woman.webp";
 
 const gridColumns = 12;
 const gridRows = 9;
 const gridItems = new Array(gridColumns * gridRows).fill(null);
 ---
+
+<!-- preload critical images -->
+<div aria-hidden="true" class="sr-only">
+  <img src={womanTexture.src} alt="" />
+</div>
 
 <div class="container">
   <div class="ambient"></div>

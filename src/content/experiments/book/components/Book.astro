@@ -1,5 +1,7 @@
 ---
 import PageSegments from "./BookPageSegments.astro";
+import bgImage from "../images/bg.webp";
+import frontCoverImage from "../images/cover-front.webp";
 
 export interface Props {
   pageSegments?: number;
@@ -7,6 +9,12 @@ export interface Props {
 
 const { pageSegments = 8 } = Astro.props;
 ---
+
+<!-- preload critical images -->
+<div aria-hidden="true" class="sr-only">
+  <img src={bgImage.src} alt="" />
+  <img src={frontCoverImage.src} alt="" />
+</div>
 
 <div class="wrapper">
   <div class="book" style={`--segments-count: ${pageSegments}`}>
