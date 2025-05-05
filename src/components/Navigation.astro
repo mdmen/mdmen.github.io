@@ -14,10 +14,7 @@ const { items } = Astro.props;
 <nav class="navigation" aria-label="Main menu">
   {
     items.map(({ name, path }) => {
-      const isHighlighted =
-        path === "/"
-          ? Astro.url.pathname === "/"
-          : Astro.url.pathname.startsWith(path);
+      const isHighlighted = path === "/" ? Astro.url.pathname === "/" : Astro.url.pathname.startsWith(path);
 
       const isCurrentPage = Astro.url.pathname === path;
 
@@ -43,7 +40,11 @@ const { items } = Astro.props;
     gap: var(--spacing-4);
   }
 
-  .navigation-link.active:not(:focus-visible) {
-    text-decoration-line: underline;
+  .navigation-link {
+    text-decoration: none;
+
+    &:is(:hover, .active:not(:focus-visible)) {
+      text-decoration-line: underline;
+    }
   }
 </style>

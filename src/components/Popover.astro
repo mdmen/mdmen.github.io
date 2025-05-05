@@ -1,0 +1,99 @@
+---
+export interface Props {
+  id?: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="popover-container">
+  <slot name="anchor" />
+
+  <div class="popover" id={id} role="tooltip" data-position="top">
+    <slot name="content" />
+  </div>
+</div>
+
+<style>
+  .popover-container {
+    position: relative;
+    display: inline-block;
+  }
+
+  .popover {
+    position: absolute;
+    padding: var(--spacing-2);
+    width: fit-content;
+    left: 50%;
+    translate: -50% 0;
+    visibility: hidden;
+    opacity: 0;
+    transition:
+      visibility 0.2s,
+      opacity 0.2s;
+    background-color: var(--color-bg-secondary);
+    border-radius: 0.4rem;
+    filter: drop-shadow(1px 1px 7px rgb(0 0 0 / 0.2));
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .popover :global(img) {
+    max-width: 15rem;
+  }
+
+  .popover::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    translate: -50% 0;
+    border: 0.7rem solid transparent;
+  }
+
+  .popover[data-position="top"]::after {
+    bottom: -1.38rem;
+    border-top-color: var(--color-bg-secondary);
+  }
+
+  .popover[data-position="bottom"]::after {
+    top: -1.38rem;
+    border-bottom-color: var(--color-bg-secondary);
+  }
+
+  .popover-container:has(.popover-anchor:is(:hover, :focus-visible)) .popover {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .popover[data-position="top"] {
+    bottom: calc(100% + 0.4rem);
+  }
+
+  .popover[data-position="bottom"] {
+    top: calc(100% + 0.4rem);
+  }
+</style>
+
+<script>
+  const interectionCallback = (entries: IntersectionObserverEntry[]) => {
+    entries.forEach(({ target, isIntersecting, boundingClientRect, intersectionRect }) => {
+      if (!isIntersecting) {
+        (target as HTMLDivElement).dataset.position = boundingClientRect.top < intersectionRect.top ? "bottom" : "top";
+      }
+    });
+  };
+
+  const intersectionOptions: IntersectionObserverInit = {
+    root: document,
+    rootMargin: "0px",
+    threshold: 1,
+  };
+
+  const observer = new IntersectionObserver(interectionCallback, intersectionOptions);
+
+  document.addEventListener("astro:page-load", () => {
+    document.querySelectorAll(".popover").forEach((element) => {
+      observer.observe(element);
+    });
+  });
+</script>

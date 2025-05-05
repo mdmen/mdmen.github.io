@@ -19,7 +19,13 @@ const [projects, experiments] = await Promise.all([getSortedPosts("projects"), g
   <SectionLayout title="Projects" as="h2" icon="atom">
     {
       projects.map(({ id, data }) => (
-        <Post title={data.title} link={`/projects/${id}/`} description={data.description} tags={data.tags} />
+        <Post
+          title={data.title}
+          link={`/projects/${id}/`}
+          description={data.description}
+          tags={data.tags}
+          preview={data.preview}
+        />
       ))
     }
   </SectionLayout>
@@ -29,7 +35,13 @@ const [projects, experiments] = await Promise.all([getSortedPosts("projects"), g
   <SectionLayout title="Experiments" as="h2" icon="flask">
     {
       experiments.map(({ id, data }) => (
-        <Post title={data.title} link={`/experiments/${id}/`} description={data.description} tags={data.tags} />
+        <Post
+          title={data.title}
+          link={`/experiments/${id}/`}
+          description={data.description}
+          tags={data.tags}
+          preview={data.preview}
+        />
       ))
     }
   </SectionLayout>

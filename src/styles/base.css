@@ -57,11 +57,10 @@
   --color-gray-800: oklch(27.8% 0.033 256.848);
   --color-gray-900: oklch(21% 0.034 264.665);
   --color-gray-950: oklch(13% 0.028 261.692);
-  --color-black: #000;
-  --color-white: #fff;
 
   --color-text-primary: light-dark(var(--color-gray-950), var(--color-gray-300));
-  --color-bg-primary: light-dark(var(--color-gray-50), var(--color-gray-800));
+  --color-bg-primary: light-dark(white, var(--color-gray-800));
+  --color-bg-secondary: light-dark(white, var(--color-gray-700));
   --color-outline: light-dark(var(--color-slate-700), var(--color-slate-300));
   --transition-theme: background-color 0.5s, color 0.5s, border-color 0.5s;
 }
@@ -91,14 +90,9 @@ body {
 
 a {
   color: var(--color-text);
-  text-decoration-line: none;
   text-underline-offset: var(--spacing-0);
 
-  &:hover {
-    text-decoration-line: underline;
-  }
-
-  &:focus-visible {
+  &:is(:focus-visible, :hover) {
     text-decoration-line: none;
   }
 }

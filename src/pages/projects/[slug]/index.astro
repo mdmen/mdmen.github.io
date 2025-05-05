@@ -3,7 +3,7 @@ import type { InferGetStaticPropsType } from "astro";
 import { getCollection, render } from "astro:content";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Tags from "@/components/Tags.astro";
-import Info from "@/components/Info.astro";
+import Icon from "@/components/Icon.astro";
 
 export const getStaticPaths = async () => {
   const entries = await getCollection("projects");
@@ -26,10 +26,11 @@ const ogImagePath = ogImage ? ogImage : `${Astro.url.pathname}og-image.png`;
   <h1>{title}</h1>
   <div class="post-info">
     {
-      !!tags.length && (
-        <Info icon="tags">
+      !!tags?.length && (
+        <div class="post-info-item">
+          <Icon icon="tags" />
           <Tags tags={tags} />
-        </Info>
+        </div>
       )
     }
   </div>
@@ -38,6 +39,14 @@ const ogImagePath = ogImage ? ogImage : `${Astro.url.pathname}og-image.png`;
 
 <style>
   .post-info {
+    display: flex;
+    align-items: center;
     margin-bottom: var(--spacing-6);
+  }
+
+  .post-info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
   }
 </style>

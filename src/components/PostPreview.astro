@@ -1,0 +1,40 @@
+---
+import type { PostPreview } from "@/types/common";
+import Popover from "./Popover.astro";
+
+export interface Props {
+  preview: PostPreview;
+}
+
+const { preview } = Astro.props;
+const popoverId = crypto.randomUUID();
+---
+
+<Popover id={popoverId}>
+  <div slot="anchor" class="preview-note popover-anchor" tabindex="0" aria-describedby={popoverId}>
+    <slot />
+  </div>
+  <Fragment slot="content">
+    <img
+      src={preview.src}
+      width={preview.width}
+      height={preview.height}
+      loading="lazy"
+      decoding="async"
+      fetchpriority="low"
+      alt="Preview"
+    />
+  </Fragment>
+</Popover>
+
+<style>
+  .preview-note {
+    text-decoration: underline dashed;
+    text-underline-offset: var(--spacing-0);
+    cursor: default;
+
+    &:is(:hover, :focus-visible) {
+      text-decoration: none;
+    }
+  }
+</style>

@@ -9,11 +9,7 @@ export interface Props {
 const { class: className, icon, ...rest } = Astro.props;
 ---
 
-<svg
-  class:list={["icon", "lucide-icon", className]}
-  aria-hidden="true"
-  {...rest}
->
+<svg class:list={["icon", "lucide-icon", className]} aria-hidden="true" {...rest}>
   <use href={`/icons.svg#${icon}`}></use>
 </svg>
 
@@ -26,12 +22,8 @@ const { class: className, icon, ...rest } = Astro.props;
     height: var(--icon-size);
     min-width: var(--icon-size);
     color: light-dark(
-      oklch(
-        from var(--color-slate-500) calc(l - var(--lightness-adjustment)) c h
-      ),
-      oklch(
-        from var(--color-slate-400) calc(l + var(--lightness-adjustment)) c h
-      )
+      oklch(from var(--color-slate-500) calc(l - var(--lightness-adjustment)) c h),
+      oklch(from var(--color-slate-400) calc(l + var(--lightness-adjustment)) c h)
     );
   }
 

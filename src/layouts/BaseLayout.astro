@@ -22,13 +22,7 @@ const { title, description, ogImage } = Astro.props;
     <Meta title={title} description={description} ogImage={ogImage} />
     <ClientRouter />
     <ThemeSync />
-    <link
-      rel="preload"
-      href="/InterVariable-subset.woff2"
-      type="font/woff2"
-      as="font"
-      crossorigin
-    />
+    <link rel="preload" href="/InterVariable-subset.woff2" type="font/woff2" as="font" crossorigin />
   </head>
   <body>
     <div class="container">

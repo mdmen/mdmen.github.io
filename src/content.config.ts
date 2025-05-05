@@ -10,6 +10,7 @@ const buildSchema =
         datePublish: z.date().optional(),
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
+        preview: image().optional(),
         ogImage: image()
           .refine((img) => img.width >= 800 && img.height >= 400, {
             message: "Open Graph image must be at least 800x400 pixels",

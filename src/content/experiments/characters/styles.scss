@@ -247,6 +247,7 @@ $characters: "woman" "📱" "#91d8e8" "#2e93cc" "#7fba2b",
 .part-side-back {
   rotate: y 180deg;
   translate: 0 0 calc(var(--part-depth) / 2 * -1);
+  filter: brightness(0.95);
 }
 
 .part-side-top {
@@ -285,6 +286,10 @@ $characters: "woman" "📱" "#91d8e8" "#2e93cc" "#7fba2b",
 
 .head .part-side-front {
   filter: brightness(calc(var(--face-b-x) + var(--face-b-y)))
+}
+
+.head .part-side-bottom {
+  --b-side-b: 0.96;
 }
 
 @include body-part-bg-positions(head, (front: -218px -158px,

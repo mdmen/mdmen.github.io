@@ -1,7 +1,8 @@
 ---
-import type { Icons } from "@/types/common";
+import type { Icons, PostPreview } from "@/types/common";
 import Tags from "./Tags.astro";
-import Info from "./Info.astro";
+import Icon from "./Icon.astro";
+import Preview from "./PostPreview.astro";
 
 export interface Props {
   title: string;
@@ -9,22 +10,35 @@ export interface Props {
   icon?: Icons;
   description?: string;
   tags?: string[];
+  preview?: PostPreview;
 }
 
-const { title, link, description, tags } = Astro.props;
+const { title, link, description, tags, preview } = Astro.props;
 ---
 
 <article class="post">
   <h3 class="post-title">
-    <a class="post-link" href={link} data-astro-prefetch>{title}</a>
+    <a href={link} data-astro-prefetch>{title}</a>
   </h3>
-  {
-    !!tags?.length && (
-      <Info class="post-tags" icon="tags">
-        <Tags tags={tags} />
-      </Info>
-    )
-  }
+  <div class="post-info">
+    {
+      !!tags?.length && (
+        <div class="post-info-item">
+          <Icon icon="tags" />
+          <Tags tags={tags} />
+        </div>
+      )
+    }
+    {
+      preview && (
+        <div class="post-info-item">
+          <Icon icon="eye" />
+          <Preview preview={preview}>Preview</Preview>
+        </div>
+      )
+    }
+  </div>
+
   {description && <p class="post-description">{description}</p>}
 </article>
 
@@ -37,16 +51,17 @@ const { title, link, description, tags } = Astro.props;
     margin-bottom: var(--spacing-1);
   }
 
-  .post-link {
-    text-decoration-line: underline;
-
-    &:is(:hover, :focus-visible) {
-      text-decoration-line: none;
-    }
+  .post-info {
+    display: flex;
+    align-items: center;
+    margin: var(--spacing-1) 0;
+    gap: var(--spacing-5);
   }
 
-  .post-tags {
-    margin: var(--spacing-1) 0;
+  .post-info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
   }
 
   .post-description {
