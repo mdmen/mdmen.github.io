@@ -1,28 +1,34 @@
+---
+const items = [
+  { name: "Cover", link: "https://www.deviantart.com/trongtuan91" },
+  { name: "Pictures", link: "https://www.tolkienestate.com" },
+  { name: "Sheet textures", link: "https://www.shutterstock.com" },
+  { name: "Frame", link: "https://www.istockphoto.com" },
+  { name: "Scroll down icon", link: "https://www.svgrepo.com/svg/522650/scroll-down" },
+  { name: "Background", link: "https://chatgpt.com" },
+];
+---
+
 <details class="credits">
   <summary class="credits-caption">Credits</summary>
   <ul>
-    <li>
-      Cover - <a target="_blank" href="https://www.deviantart.com/trongtuan91">www.deviantart.com/trongtuan91</a>
-    </li>
-    <li>
-      Pictures - <a target="_blank" href="https://www.tolkienestate.com">www.tolkienestate.com</a>
-    </li>
-    <li>
-      Sheet textures - <a target="_blank" href="https://www.shutterstock.com">www.shutterstock.com</a>
-    </li>
-    <li>
-      Frame - <a target="_blank" href="https://www.istockphoto.com">www.istockphoto.com</a>
-    </li>
-    <li>
-      Scroll down icon - <a target="_blank" href="https://www.svgrepo.com/svg/522650/scroll-down">www.svgrepo.com</a>
-    </li>
-    <li>Background - ChatGPT</li>
+    {
+      items.map(({ name, link }) => (
+        <li>
+          {name}
+          {" - "}
+          <a target="_blank" href={link}>
+            {link.replace(/^.*?\/\//, "")}
+          </a>
+        </li>
+      ))
+    }
   </ul>
 </details>
 
 <style>
   .credits {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     position: fixed;
     top: 1rem;
     left: 1rem;

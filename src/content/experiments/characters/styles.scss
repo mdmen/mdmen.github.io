@@ -26,6 +26,7 @@ $minFrontSideBrightness: 0.85;
 $maxFrontSideBrightness: 1.04;
 $minShadowRotateX: 80;
 $maxShadowRotateX: 90;
+$cursorSize: 90;
 
 @function lerp-index-value($minValue, $maxValue, $index, $total, $shouldRound: false) {
   $value: calc(($index - 1) / ($total - 1));
@@ -65,20 +66,22 @@ $maxShadowRotateX: 90;
   --fly-pos-y: -15vh;
 }
 
-$characters: "woman" "📱" "#91d8e8" "#2e93cc" "#7fba2b",
-  "man" "🎮" "#91d8e8" "#2e93cc" "#7fba2b",
-  "soldier" "🧨" "#bbf6f7" "#59d7ef" "#dac43e",
-  "orc" "🍗" "#891d02" "#2d0d0b" "#4e4d5b",
-  "robot" "⚙️" "#302557" "#000" "#b5b5b5",
-  "adventurer" "💎" "#a7b2b7" "#507c99" "#fdcd7d";
+$characters: "woman" "📱" "#91d8e8" "#2e93cc" "#7fba2b" "#ffe0b3",
+  "man" "🎮" "#91d8e8" "#2e93cc" "#7fba2b" "#ffe0b1",
+  "soldier" "🧨" "#bbf6f7" "#59d7ef" "#dac43e" "#967545",
+  "orc" "🍗" "#891d02" "#2d0d0b" "#4e4d5b" "#18bd9d",
+  "robot" "⚙️" "#302557" "#000" "#b5b5b5" "#a6babf",
+  "adventurer" "💎" "#a7b2b7" "#507c99" "#fdcd7d" "#ffe0b1";
 
-@each $id, $fly, $skyBottom, $skyTop, $ground in $characters {
+@each $id, $fly, $skyBottom, $skyTop, $ground, $skin in $characters {
   :root:has([data-character=#{$id}]:checked) {
     --character-texture: url(#{$imagePath}#{$id}.webp);
-    --fly-object: '#{$fly}';
+    --fly: '#{$fly}';
+    --cursor: url("data:image/svg+xml,%3Csvg viewBox='0 0 100 100' width='#{$cursorSize}' height='#{$cursorSize}' xmlns='http://www.w3.org/2000/svg'%3E%3Ctext y='.9em' font-size='90'%3E#{$fly}%3C/text%3E%3C/svg%3E");
     --sky-bottom-color: #{$skyBottom};
     --sky-top-color: #{$skyTop};
     --ground-base-color: #{$ground};
+    --skin-color: #{$skin};
   }
 }
 
@@ -223,6 +226,7 @@ $characters: "woman" "📱" "#91d8e8" "#2e93cc" "#7fba2b",
   position: absolute;
   width: var(--part-width);
   height: var(--part-height);
+  background-color: var(--skin-color);
   background-image: var(--character-texture);
   background-repeat: no-repeat;
   transition: filter .3s linear;
@@ -390,37 +394,31 @@ $characters: "woman" "📱" "#91d8e8" "#2e93cc" "#7fba2b",
   height: 100%;
 }
 
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: var(--cursor) #{$cursorSize / 2} #{$cursorSize / 2},
+  auto;
+}
+
 .cell:has(:focus-visible) {
   outline: 2px solid rgb(0 0 0 / 0.3);
 }
 
-.fly {
-  --fly-size: clamp(3.125rem, 2.309vw + 2.527rem, 4.375rem);
-  --fly-half-size: calc(var(--fly-size) / 2);
-
-  position: absolute;
-  top: 0;
-  left: 0;
+.cell:has(:checked)::after {
+  content: var(--fly);
   font-size: clamp(3.125rem, 2.309vw + 2.527rem, 4.375rem);
-  translate: calc(var(--fly-pos-x) - var(--fly-half-size)) calc(var(--fly-pos-y) - var(--fly-half-size));
-  transition: translate .3s linear;
-  pointer-events: none;
-  z-index: 1;
-  animation: fly-pulse .8s infinite alternate ease-in-out;
+  visibility: visible;
+  opacity: 1;
+  scale: 1;
+  transition: visibility 0.2s, opacity 0.2s, scale 0.2s;
 }
 
-@keyframes fly-pulse {
-  from {
-    scale: 0.9;
-  }
-
-  to {
-    scale: 1.1;
-  }
-}
-
-.fly::before {
-  content: var(--fly-object);
+.grid:hover .cell::after {
+  visibility: hidden;
+  opacity: 0;
+  scale: 0.8;
 }
 
 $gridItemIndex: 1;

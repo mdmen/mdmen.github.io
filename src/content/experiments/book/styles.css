@@ -104,6 +104,7 @@
   animation: book-transform ease-in-out forwards;
   animation-timeline: scroll(root);
   image-rendering: pixelated;
+  will-change: transform;
 }
 
 @keyframes book-transform {
